@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+	<DataSources>
+		<DataSource Name="MainConnect">
+			<DataSourceReference>MainConnect</DataSourceReference>
+			<rd:SecurityType>None</rd:SecurityType>
+			<rd:DataSourceID>6ca80f4e-1904-4ea1-8dc0-036643c38120</rd:DataSourceID>
+		</DataSource>
+	</DataSources>
+  
+      <ReportParameters>
+   
+     <ReportParameter Name="OrgSet">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OrgSet</DataSetName>
+          <ValueField>OrgSet</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Org Set</Prompt>
+      <Hidden>true</Hidden>
+      <HMXParameter>
+		<HMXDefaultSession>OrgSet</HMXDefaultSession> 
+	  </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="Organization">
+      <DataType>Integer</DataType>
+      <Prompt>Organizations</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrganizationSet</DataSetName>
+          <ValueField>OrgEntSys</ValueField>
+          <LabelField>UpperOrgDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+      <HMXParameter>
+		<HMXControlType>OrganizationSelection</HMXControlType>
+		<HMXZone>1</HMXZone>
+	  </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="BreakAtOrgLevel">
+		<DataType>Integer</DataType>
+		<DefaultValue>
+			<Values>
+				<Value>60</Value>
+			</Values>
+		</DefaultValue>
+		<Prompt>Break At Org Level</Prompt>
+		<ValidValues>
+			<DataSetReference>
+				<DataSetName>FacilityLevelSet</DataSetName>
+				<ValueField>OrgLevel</ValueField>
+				<LabelField>LevelDesc</LabelField>
+			</DataSetReference>
+		</ValidValues>
+		<HMXParameter>
+			<HMXAssociatedParameter>SortControl</HMXAssociatedParameter>
+			<HMXUserPreferences>Template</HMXUserPreferences>
+		</HMXParameter>
+	</ReportParameter>
+	
+	<ReportParameter Name="SortControl">
+      <DataType>Integer</DataType>
+	  <Prompt>Sort by</Prompt>
+	  <MultiValue>true</MultiValue>
+	  <HMXParameter>
+		<HMXControlType>SortControl</HMXControlType>
+		<HMXControlProperties>
+			<IsRequired>False</IsRequired>
+			<OrgLevelSort>True</OrgLevelSort>
+		</HMXControlProperties>
+		<HMXZone>5</HMXZone>
+		<HMXUserPreferences>Template</HMXUserPreferences>
+		<HMXAssociatedParameter>BreakAtOrgLevel</HMXAssociatedParameter>
+		  <HMXDisplayOrder>1</HMXDisplayOrder>
+	  </HMXParameter>
+	</ReportParameter>
+  
+   <ReportParameter Name="RunDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Run Date</Prompt>
+		<HMXParameter>
+      <HMXControlType>DateControl</HMXControlType>
+        <HMXControlProperties>
+          <IsRange>False</IsRange>
+          <IsRequired>True</IsRequired>
+          <ShowLabel>False</ShowLabel>
+          <Label>As Of Date</Label>
+          <BeginDateLabel>Run Date</BeginDateLabel>
+        </HMXControlProperties>
+      <HMXAssociatedParameter>RunDate</HMXAssociatedParameter>
+      <HMXZone>2-1</HMXZone>
+      <HMXDisplayOrder>1</HMXDisplayOrder>
+		</HMXParameter>
+</ReportParameter>
+    <ReportParameter Name="RunTime">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=CStr(CInt(Hour(Now))+1) + ":" + Right("00" + CStr(Minute(Now)),2)</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Run Time</Prompt>
+     <HMXControlType>TextBox</HMXControlType>
+        <HMXControlProperties>
+          <IsRequired>True</IsRequired>
+          <ShowLabel>True</ShowLabel>
+          <Label>As of Time</Label>
+        </HMXControlProperties>
+      <HMXAssociatedParameter>RunTime</HMXAssociatedParameter>
+      <HMXZone>2-2</HMXZone>
+      <HMXDisplayOrder>1</HMXDisplayOrder>
+    </ReportParameter>
+  </ReportParameters>
+  
+  <DataSets>
+    <DataSet Name="ReportDataSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@RunDate">
+            <Value>=Parameters!RunDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@RunTime">
+            <Value>=Parameters!RunTime.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@OrgSet">
+            <Value>=Parameters!OrgSet.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Organization">
+            <Value>=Parameters!Organization.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@BreakAtOrgLevel">
+            <Value>=Parameters!BreakAtOrgLevel.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>
+          
+          /*
+          This report is used to break out In-house residents who have not had a bowel movement as indicated by the bowell monitor touch screen question (190187).  In-House date is the either date of admission or
+          last date of return from LOA.  IMPORTANT, if you don't want new admissions or recent returns from LOA showing up on this list, clinicians should enter a late-entry Bowel Monitor assessment with the
+          date/time of the last BM in the hospital or prior to admission
+          
+          NOTE: Times are setup using EST time zone.
+          */
+          
+          Declare @Level1Start smalldatetime,
+          @Level2Start smalldatetime,
+          @Level3Start smalldatetime,
+          @DayShift smalldatetime,
+          @EveShift smalldatetime,
+          @NightShift smalldatetime,
+          @UTCRunDate smalldatetime,
+          @RunDateTime smalldatetime
+          
+          -- combine date + time fields
+          SET @RunDateTime = @RunDate + @RunTime
+
+          -- adjust for UTC from eastern
+          Set @UTCRunDate = DATEADD(HH,4,@RunDateTime)
+          --set to UTC version of shift start at 6:00am
+          Set @DayShift = CONVERT(smalldatetime,CONVERT(char(2),MONTH(@UTCRunDate)) + '-' + CONVERT(char(2),DAY(@UTCRunDate)) + '-' + CONVERT(char(4),YEAR(@UTCRunDate)) + ' 10:00.00')
+          SET @EveShift = DATEADD(HH,8,@DayShift)
+          SET @NightShift = DATEADD(HH,8,@EveShift)
+
+          --set first Level to 8 shifts back
+          SET @Level1Start =
+          CASE
+          WHEN @UTCRunDate &gt;= @NightShift THEN DATEADD(HH,-64,@NightShift)
+          WHEN @UTCRunDate &gt;= @EveShift THEN DATEADD(HH,-64,@EveShift)
+          WHEN @UTCRunDate &gt;= @DayShift THEN DATEADD(HH, -64, @DayShift)
+          ELSE DATEADD(HH,-96,@NightShift)
+          End
+          --set 2nd level to 11 shifts back
+          SET @Level2Start = DATEADD(HH,-24,@Level1Start)
+          --set 3rd level to 14+ shifts
+          SET @Level3Start = DATEADD(HH,-24,@Level2Start)
+
+
+          /*Start OrgBreak Queries - Can be Reused - Builds variable for Org Level Selection Control*/
+          DECLARE @OrgLocation TINYINT
+          SELECT @OrgLocation = (
+          SELECT
+          COUNT(*)
+          FROM
+          Organizations (NOLOCK)
+          INNER JOIN OrganizationLevels (NOLOCK) ON OrganizationLevels.OrgSet = Organizations.OrgSet
+          AND OrganizationLevels.OrgLevel &gt;= Organizations.OrgLevel
+          WHERE
+          Organizations.OrgSet = @OrgSet
+          AND Organizations.OrgEntSys = @Organization)
+
+          DECLARE @BreakAtOrgLevelLocation TINYINT
+          SELECT @BreakAtOrgLevelLocation = (
+          SELECT
+          COUNT(*)
+          FROM
+          OrganizationLevels (NOLOCK)
+          WHERE
+          OrganizationLevels.OrgSet = @OrgSet
+          AND OrganizationLevels.OrgLevel &gt;= @BreakAtOrgLevel)
+          /*End OrgBreak Queries - Can be Reused*/
+
+          SELECT  DISTINCT
+          ISNULL(
+          (
+          CASE
+          WHEN @BreakAtOrgLevelLocation = 1 THEN Organizations.EntSys1
+          WHEN @BreakAtOrgLevelLocation = 2 THEN Organizations.EntSys2
+          WHEN @BreakAtOrgLevelLocation = 3 THEN Organizations.EntSys3
+          WHEN @BreakAtOrgLevelLocation = 4 THEN Organizations.EntSys4
+          WHEN @BreakAtOrgLevelLocation = 5 THEN Organizations.EntSys5
+          WHEN @BreakAtOrgLevelLocation = 6 THEN Organizations.EntSys6
+          WHEN @BreakAtOrgLevelLocation = 7 THEN Organizations.EntSys7
+          WHEN @BreakAtOrgLevelLocation = 8 THEN Organizations.EntSys8
+          WHEN @BreakAtOrgLevelLocation = 9 THEN Organizations.EntSys9
+          WHEN @BreakAtOrgLevelLocation = 10 THEN Organizations.EntSys10
+          WHEN @BreakAtOrgLevelLocation = 11 THEN Organizations.EntSys11
+          WHEN @BreakAtOrgLevelLocation = 12 THEN Organizations.EntSys12
+          WHEN @BreakAtOrgLevelLocation = 13 THEN Organizations.EntSys13
+          WHEN @BreakAtOrgLevelLocation = 14 THEN Organizations.EntSys14
+          WHEN @BreakAtOrgLevelLocation = 15 THEN Organizations.EntSys15
+          END
+          ),Organizations.OrgEntSys) AS OrgBreak,
+          Organizations.FullOrgDesc,
+          /*End - Builds out Org Break - Can be reused*/
+          dbo.episodes.episodesys,
+          (SELECT     TOP (1) (CASE WHEN dbo.EpsCensusTrans.TransEndDate IS NULL THEN dbo.Episodes.AdmissionDate ELSE dbo.EpsCensusTrans.TransEndDate END)
+          AS InHouseDate
+          FROM          dbo.EpsCensusTrans
+          WHERE      (EpisodeSys = dbo.Episodes.EpisodeSys)
+          ORDER BY CensSeq DESC) AS InHouseStart, dbo.Entities.InternalID, dbo.Episodes.AdmissionID, dbo.Entities.DisplayName, @RunDate as AsOfDate
+          INTO #HCInHouseResidents
+          FROM         dbo.Episodes INNER JOIN
+          dbo.Entities with (nolock) ON dbo.Episodes.ResidentSys = dbo.Entities.EntitySys INNER JOIN
+          dbo.EpsCensusTrans AS EpsCensusTrans_1 with (nolock) ON dbo.Episodes.EpisodeSys = EpsCensusTrans_1.EpisodeSys INNER JOIN
+          dbo.EpsOrganizations with (nolock) ON dbo.Episodes.EpisodeSys = dbo.EpsOrganizations.EpisodeSys INNER JOIN
+          dbo.Entities AS EO with (nolock) ON dbo.EpsOrganizations.OrgEntSys = EO.EntitySys INNER JOIN
+          dbo.Organizations with (nolock) ON EO.EntitySys = dbo.Organizations.OrgEntSys
+          WHERE
+          (Episodes.DischargeDate IS NULL or
+          Episodes.DischargeDate &gt; @RunDateTime) AND
+          (dbo.Episodes.AdmissionDate &lt; @RunDateTime) AND
+          (EpsCensusTrans_1.TransEndDate IS NULL OR
+          EpsCensusTrans_1.TransEndDate BETWEEN @Level3Start and @RunDateTime) and dbo.Organizations.LowerOrgDesc &lt;&gt; '' and (EPSOrganizations.DateInactive Is NULL OR EpsOrganizations.DateInactive &gt; @RunDateTime)
+          /*Start Org Filter in WHERE CLAUSE- Can be Reused*/
+          AND (
+          (@OrgLocation IS NULL)
+          OR (@OrgLocation=1 AND @Organization = Organizations.EntSys1)
+          OR (@OrgLocation=2 AND @Organization = Organizations.EntSys2)
+          OR (@OrgLocation=3 AND @Organization = Organizations.EntSys3)
+          OR (@OrgLocation=4 AND @Organization = Organizations.EntSys4)
+          OR (@OrgLocation=5 AND @Organization = Organizations.EntSys5)
+          OR (@OrgLocation=6 AND @Organization = Organizations.EntSys6)
+          OR (@OrgLocation=7 AND @Organization = Organizations.EntSys7)
+          OR (@OrgLocation=8 AND @Organization = Organizations.EntSys8)
+          OR (@OrgLocation=9 AND @Organization = Organizations.EntSys9)
+          OR (@OrgLocation=10 AND @Organization = Organizations.EntSys10)
+          OR (@OrgLocation=11 AND @Organization = Organizations.EntSys11)
+          OR (@OrgLocation=12 AND @Organization = Organizations.EntSys12)
+          OR (@OrgLocation=13 AND @Organization = Organizations.EntSys13)
+          OR (@OrgLocation=14 AND @Organization = Organizations.EntSys14)
+          OR (@OrgLocation=15 AND @Organization = Organizations.EntSys15)
+          )
+          /*End Org Filter - Can be Reused*/
+
+          -- QuestionSys 190187 is Did the resident have a BM and value 1 is a yes
+
+          SELECT  #HCInHouseResidents.*,
+          (SELECT COUNT(EpisodeSys)
+          FROM         dbo.EpsAssessments INNER JOIN
+          dbo.AssessTemplate with (nolock) ON dbo.EpsAssessments.TemplateSys = dbo.AssessTemplate.AssessmentSys INNER JOIN
+          dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
+          dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
+          dbo.EpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.EpsAssessDtl.EpsAssessSys
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.EpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level3Start and @UTCRunDate
+          and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level3Count,
+          (SELECT COUNT(EpisodeSys)
+          FROM         dbo.EpsAssessments INNER JOIN
+          dbo.AssessTemplate with (nolock) ON dbo.EpsAssessments.TemplateSys = dbo.AssessTemplate.AssessmentSys INNER JOIN
+          dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
+          dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
+          dbo.EpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.EpsAssessDtl.EpsAssessSys
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.EpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level2Start and @UTCRunDate
+          and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level2Count,
+          (SELECT COUNT(EpisodeSys)
+          FROM         dbo.EpsAssessments INNER JOIN
+          dbo.AssessTemplate with (nolock) ON dbo.EpsAssessments.TemplateSys = dbo.AssessTemplate.AssessmentSys INNER JOIN
+          dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
+          dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
+          dbo.EpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.EpsAssessDtl.EpsAssessSys
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.EpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level1Start and @UTCRunDate
+          and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level1Count
+          FROM #HCInHouseResidents
+
+          ORDER BY Level1Count,Level2Count, Level3Count, DisplayName
+
+
+          DROP TABLE #HCInHouseResidents
+        </CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="OrgBreak">
+          <DataField>OrgBreak</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FullOrgDesc">
+          <DataField>FullOrdDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="episodesys">
+          <DataField>episodesys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="InHouseStart">
+          <DataField>InHouseStart</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="InternalID">
+          <DataField>InternalID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AdmissionID">
+          <DataField>AdmissionID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DisplayName">
+          <DataField>DisplayName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AsOfDate">
+          <DataField>AsOfDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Level3Count">
+          <DataField>Level3Count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Level2Count">
+          <DataField>Level2Count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Level1Count">
+          <DataField>Level1Count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrgSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>Select OrgSet 
+From OrganizationSets with (nolock) 
+where OrgSetStatus = 'CR'
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgSet">
+          <DataField>OrgSet</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT
+	OrgEntSys,
+	UpperOrgDesc
+FROM
+	Organizations WITH (NOLOCK)
+WHERE	
+	OrgSet =   (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+		)
+	AND OrgLevel &lt;= (
+		SELECT ol.OrgLevel
+		FROM OrganizationLevels AS ol WITH (NOLOCK)
+		WHERE ol.OrgSet =  (
+				Select OrgSet 
+				From OrganizationSets with (nolock) 
+				where OrgSetStatus = 'CR' 
+			)	
+		AND ol.LevelType = 'FA'
+		)	
+ORDER BY
+                UpperOrgDesc, OrgEntSys
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgEntSys">
+          <DataField>OrgEntSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UpperOrgDesc">
+          <DataField>UpperOrgDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationLevelSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT OrgLevel,LevelDesc 
+FROM OrganizationLevels  WITH (NOLOCK) 
+Where OrgSet = (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+	)
+             And OrgLevel &lt;= (Select OrgLevel From OrganizationLevels WITH (NOLOCK) where LevelType = 'FA' 
+				and OrgSet = (
+						Select OrgSet 
+						From OrganizationSets with (nolock) 
+						where OrgSetStatus = 'CR')
+					)
+ORDER BY OrgLevel
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FacilityLevelSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT ol.OrgLevel, ol.LevelAbbrev, ol.LevelDesc 
+FROM dbo.OrganizationLevels AS ol WITH (NOLOCK) 
+WHERE ol.OrgSet = (
+			Select OrgSet 
+			From OrganizationSets with (nolock) 
+			where OrgSetStatus = 'CR'
+		   ) 
+AND ol.LevelType = 'FA'
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelAbbrev">
+          <DataField>LevelAbbrev</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>b95f7f36-efa3-4377-a656-6c86f109306e</rd:ReportID>
+</Report>
