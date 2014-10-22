@@ -1,0 +1,8 @@
+If you are dealing with a multi-value pick list, you probably have discovered that it doesn't pass in proper SQL syntax for your WHERE clause.
+
+HMX provides a user-defined function called dbo.SplitMax(@parameter,delimiter) that will take these parameters and return a single-quoted, comma-delimited list.
+
+Here's an example:
+
+WHERE
+(TranARDetail.GLAcctNo in (Select [Value] From [dbo].[SplitMax](@AccountList, ',')) OR TranARDetail.GLAcctNo IS NULL)
