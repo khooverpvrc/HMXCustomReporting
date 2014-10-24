@@ -1,0 +1,2336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="table1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>0.625in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.36458in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.8125in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.66667in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.25in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.57292in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.01042in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.80208in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.78125in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.58333in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.70833in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.75in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.56677in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox6">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Trans</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Date</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox8">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Service Desc</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox8</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox9">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Amount</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox9</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox11">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Med Rec  #</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox11</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox12">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Resident Name</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox12</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox13">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Adm ID</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox13</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox14">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Plan Desc</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox14</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox15">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Entry Date</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox15</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox16">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>GL Date</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox16</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox17">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Batch  #</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox17</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox18">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Check #</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox18</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox19">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Date Rec'd</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox19</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.23344in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Account">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!AcctDescription.Value</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> - </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!FullAcctNo.Value</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Account</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>12</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.23344in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox97">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=FormatDateTime(Fields!TranEndDate.Value,DateFormat.ShortDate)</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox97</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ServiceDesc">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ServiceDesc.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ServiceDesc</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Amount">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Amount.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <Format>'$'0.00;('$'0.00)</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Amount</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="MedRecNum">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!MedRecNum.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>MedRecNum</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ResidentName">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ResidentName.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ResidentName</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="AdmissionID">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!AdmissionID.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>AdmissionID</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="PlanDesc">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!PlanDesc.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>PlanDesc</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="EntryDate">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!EntryDate.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <Format>MM/dd/yyyy</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>EntryDate</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="GLTransDate">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!GLTransDate.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <Format>MM/dd/yyyy</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>GLTransDate</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="BatchNumber">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!BatchNumber.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>BatchNumber</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="CheckNumber">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!CheckNumber.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>CheckNumber</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DateReceived">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DateReceived.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <Format>MM/dd/yyyy</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DateReceived</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox122">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox122</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox123">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox123</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox124">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Sum(Fields!Amount.Value)</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                                <Format>'$'0.00;('$'0.00)</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox124</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Double</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox125">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox125</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox126">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox126</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox127">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox127</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox128">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox128</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox129">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox129</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox130">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox130</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox131">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox131</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox132">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox132</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox133">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox133</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="table1_Account">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!FullAcctNo.Value</GroupExpression>
+                </GroupExpressions>
+                <Filters>
+                  <Filter>
+                    <FilterExpression>=Fields!FullAcctNo.Value</FilterExpression>
+                    <Operator>In</Operator>
+                    <FilterValues>
+                      <FilterValue>=Parameters!AccountList.Value</FilterValue>
+                    </FilterValues>
+                  </Filter>
+                  <Filter>
+                    <FilterExpression>=Fields!ServiceDesc.Value</FilterExpression>
+                    <Operator>In</Operator>
+                    <FilterValues>
+                      <FilterValue>=Parameters!ServiceList.Value</FilterValue>
+                    </FilterValues>
+                  </Filter>
+                </Filters>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!ResidentName.Value</Value>
+                </SortExpression>
+                <SortExpression>
+                  <Value>=Fields!TranEndDate.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="CostCenterGroup">
+                    <DataElementName>Detail</DataElementName>
+                  </Group>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                  <DataElementName>Detail_Collection</DataElementName>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>ReportDataSet</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!ServiceDesc.Value</FilterExpression>
+            <Operator>In</Operator>
+            <FilterValues>
+              <FilterValue>=Parameters!ServiceList.Value</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <Top>1.085in</Top>
+        <Height>1.28365in</Height>
+        <Width>9.92708in</Width>
+        <Style />
+      </Tablix>
+      <Textbox Name="textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>GL Detail Report</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Transaction Date Range: </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=FormatDateTime(Parameters!TranFromDate.Value,DateFormat.ShortDate)</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> - </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=FormatDateTime(Parameters!TranThruDate.Value,DateFormat.ShortDate)</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>GL Export Range:  </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=FormatDateTime(Parameters!GLExportFromDate.Value,dateformat.ShortDate)</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> - </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=FormatDateTime(Parameters!GLExportThruDate.Value,DateFormat.ShortDate)</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Entry Date Range:  </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=FormatDateTime(Parameters!EntryFromDate.Value,DateFormat.ShortDate)</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> - </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=FormatDateTime(Parameters!EntryThruDate.Value,DateFormat.ShortDate)</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Height>1.085in</Height>
+        <Width>9.92708in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BottomBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </BottomBorder>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>2.61865in</Height>
+    <Style />
+  </Body>
+  <Width>9.94792in</Width>
+  <Page>
+    <PageHeight>8.5in</PageHeight>
+    <PageWidth>11in</PageWidth>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <TopMargin>0.5in</TopMargin>
+    <BottomMargin>0.5in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="MainConnect">
+      <DataSourceReference>MainConnect</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>6ca80f4e-1904-4ea1-8dc0-036643c38120</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ReportDataSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@TranThruDate">
+            <Value>=Parameters!TranThruDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EntryThruDate">
+            <Value>=Parameters!EntryThruDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@OrgSet">
+            <Value>=Parameters!OrgSet.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Organization">
+            <Value>=Parameters!Organization.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@BreakAtOrgLevel">
+            <Value>=Parameters!BreakAtOrgLevel.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TranFromDate">
+            <Value>=Parameters!TranFromDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@GLExportFromDate">
+            <Value>=Parameters!GLExportFromDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@GLExportThruDate">
+            <Value>=Parameters!GLExportThruDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeUnExported">
+            <Value>=Parameters!IncludeUnExported.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EntryFromDate">
+            <Value>=Parameters!EntryFromDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>/*Census Training Report*/
+
+-- Declare Input parameters
+/*
+DECLARE @Organization INT, --required
+		@GLExportFromDate DATETIME, 
+		@GLExportThruDate DATETIME, 
+		@IncludeUnExported INT,
+		@TranFromDate DATETIME,
+		@TranThruDate DATETIME,
+		@EntryFromDate DATETIME,
+		@EntryThruDate DATETIME,
+		@AccountList varchar(max),
+		@OrgSet INT, --required
+		@BreakAtOrgLevel INT
+		
+SET @OrgSet = 1
+SET @Organization = 1
+SET @TranFromDate = '08/01/2014'
+SET @TranThruDate = '10/15/2014'
+SET @EntryFromDate = '08/01/2014'
+SET @EntryThruDate = '10/15/2014'
+SET @GLExportFromDate = '08/01/2014'
+SET @GLExportThruDate = '10/15/2014'
+SET @IncludeUnExported = 0
+SET @AccountList = ''
+SET @BreakAtOrgLevel = 60
+*/
+			DECLARE @TransEndDateTime DATETIME
+			SET @TransEndDateTime=cast((convert(char(10),@TranThruDate,101) + ' 23:59:59') as datetime)
+
+			DECLARE @EntryEndDateTime SMALLDATETIME
+			SET @EntryEndDateTime=cast((convert(char(10),@EntryThruDate,101) + ' 23:59:59') as datetime)
+
+/*Start OrgBreak Queries - Can be Reused - Builds variable for Org Level Selection Control*/
+	DECLARE @OrgLocation TINYINT
+	SELECT @OrgLocation = (
+		SELECT 
+			COUNT(*)
+		FROM 
+			Organizations (NOLOCK)
+		INNER JOIN OrganizationLevels (NOLOCK) ON OrganizationLevels.OrgSet = Organizations.OrgSet
+			AND OrganizationLevels.OrgLevel &gt;= Organizations.OrgLevel
+		WHERE
+			Organizations.OrgSet = @OrgSet
+			AND Organizations.OrgEntSys = @Organization)
+
+	DECLARE @BreakAtOrgLevelLocation TINYINT
+	SELECT @BreakAtOrgLevelLocation = (
+		SELECT 
+			COUNT(*)
+		FROM 
+			OrganizationLevels (NOLOCK)
+		WHERE 
+			OrganizationLevels.OrgSet = @OrgSet
+			AND OrganizationLevels.OrgLevel &gt;= @BreakAtOrgLevel)
+/*End OrgBreak Queries - Can be Reused*/
+
+--Create Temp Table for results
+Declare @GLDetail Table(
+	OrgBreak varchar(max),
+	OrgBreakDisplay varchar(max),
+	TranSys int NOT NULL,
+	PlanSys int NULL,
+	ARActionType varchar(max) NULL,
+	AccountType varchar(max) NULL,
+	TranDate smalldatetime NULL,
+	Amount money NULL,
+	EntryDate datetime NULL,
+	UserCreated int NULL,
+	GLTransDate datetime NULL,
+	Units money NULL,
+	PriceOrigin char(2) NULL,
+	BatchNumber int NULL,
+	Billed char(1) NULL,
+	AdjType char(2) NULL,
+	StmtBegDate smalldatetime NULL,
+	StmtEndDate smalldatetime NULL,
+	ApplyToDate smalldatetime NULL,
+	FullAcctNo varchar(max) NULL,
+	Account varchar(max) NULL,
+	CostCenter varchar(max) NULL,
+	OrgEntSys int NULL,
+	EpisodeSys int NULL,
+	ResidentSys int NULL,
+	AdvRevFlag char(1) NULL,
+	CheckSys int NULL,
+	TranEndDate smalldatetime NULL,
+	MedRecNum varchar(max),
+    ResidentName varchar(max),
+    AdmissionID varchar(max),
+    PlanDesc varchar(max),
+    CheckNumber varchar(max),
+    DateReceived smalldatetime, 
+    AcctDescription varchar(max),
+    ServiceDesc varchar(max))
+    
+Insert Into @GLDetail(        
+	OrgBreak,
+	OrgBreakDisplay,
+	TranSys,
+	PlanSys,
+	ARActionType,
+	AccountType,
+	TranDate,
+	Amount,
+	EntryDate,
+	UserCreated,
+	GLTransDate,
+	Units,
+	PriceOrigin,
+	BatchNumber,
+	Billed,
+	AdjType,
+	StmtBegDate,
+	StmtEndDate,
+	ApplyToDate,
+	FullAcctNo,
+	Account,
+	CostCenter,
+	OrgEntSys,
+	EpisodeSys,
+	ResidentSys,
+	AdvRevFlag,
+	CheckSys,
+	TranEndDate,
+	MedRecNum,
+    ResidentName,
+    AdmissionID,
+    PlanDesc,
+    CheckNumber,
+    DateReceived,
+    AcctDescription,
+    ServiceDesc)
+
+/*Start - Builds out Org Break - Can be reused*/
+SELECT  DISTINCT
+ISNULL(
+		(
+			CASE	
+				WHEN @BreakAtOrgLevelLocation = 1 THEN Organizations.EntSys1
+				WHEN @BreakAtOrgLevelLocation = 2 THEN Organizations.EntSys2
+				WHEN @BreakAtOrgLevelLocation = 3 THEN Organizations.EntSys3
+				WHEN @BreakAtOrgLevelLocation = 4 THEN Organizations.EntSys4
+				WHEN @BreakAtOrgLevelLocation = 5 THEN Organizations.EntSys5
+				WHEN @BreakAtOrgLevelLocation = 6 THEN Organizations.EntSys6
+				WHEN @BreakAtOrgLevelLocation = 7 THEN Organizations.EntSys7
+				WHEN @BreakAtOrgLevelLocation = 8 THEN Organizations.EntSys8
+				WHEN @BreakAtOrgLevelLocation = 9 THEN Organizations.EntSys9
+				WHEN @BreakAtOrgLevelLocation = 10 THEN Organizations.EntSys10
+				WHEN @BreakAtOrgLevelLocation = 11 THEN Organizations.EntSys11
+				WHEN @BreakAtOrgLevelLocation = 12 THEN Organizations.EntSys12
+				WHEN @BreakAtOrgLevelLocation = 13 THEN Organizations.EntSys13
+				WHEN @BreakAtOrgLevelLocation = 14 THEN Organizations.EntSys14
+				WHEN @BreakAtOrgLevelLocation = 15 THEN Organizations.EntSys15
+			END
+				),Organizations.OrgEntSys) AS OrgBreak,
+				Organizations.FullOrgDesc,
+/*End - Builds out Org Break - Can be reused*/
+
+dbo.TranARDetail.TranSys, 
+dbo.TranARDetail.PlanSys, 
+dbo.TranARDetail.ARActionType, 
+dbo.TranARDetail.AccountType, 
+dbo.TranARDetail.TranDate, 
+dbo.TranARDetail.Amount, 
+dbo.TranARDetail.EntryDate, 
+dbo.TranARDetail.UserCreated, 
+dbo.TranARDetail.GLTransDate, 
+dbo.TranARDetail.Units, 
+dbo.TranARDetail.PriceOrigin, 
+dbo.TranARDetail.BatchNumber, 
+dbo.TranARDetail.Billed, 
+dbo.TranARDetail.AdjType, 
+dbo.TranARDetail.StmtBegDate,
+dbo.TranARDetail.StmtEndDate, 
+dbo.TranARDetail.ApplyToDate, 
+dbo.TranARDetail.GLAcctNo AS FullAcct, 
+LEFT(dbo.TranARDetail.GLAcctNo, 4) AS Account, 
+RIGHT(dbo.TranARDetail.GLAcctNo, 3) AS CostCenter, 
+dbo.TranARDetail.OrgEntSys, 
+dbo.TranARDetail.EpisodeSys, 
+dbo.TranARDetail.ResidentSys,
+dbo.TranARDetail.AdvRevFlag, 
+dbo.TranARDetail.CheckSys, 
+dbo.TranARDetail.TranEndDate, 
+ResEnt.InternalID, 
+ResEnt.DisplayName, 
+dbo.Episodes.AdmissionID,
+dbo.Plans.PlanDesc, 
+dbo.PaymentChecks.CheckNumber, 
+dbo.PaymentChecks.ReceivedDate, 
+dbo.GLAccts.Description,
+dbo.Services.ServiceDesc
+FROM         dbo.TranARDetail 
+INNER JOIN dbo.Organizations WITH (NOLOCK) ON dbo.TranARDetail.OrgEntSys = dbo.Organizations.OrgEntSys
+INNER JOIN dbo.Episodes WITH (NOLOCK) ON dbo.TranARDetail.EpisodeSys = dbo.Episodes.EpisodeSys 
+INNER JOIN dbo.Entities AS ResEnt WITH (NOLOCK) ON dbo.TranARDetail.ResidentSys = ResEnt.EntitySys
+INNER JOIN dbo.TranService WITH (NOLOCK) ON dbo.TranARDetail.TranSys = dbo.TranService.TranSys 
+INNER JOIN dbo.Services WITH (NOLOCK) ON dbo.TranService.ServiceSys = dbo.Services.ServiceSys 
+LEFT JOIN dbo.PaymentChecks WITH (NOLOCK) ON dbo.TranARDetail.CheckSys = dbo.PaymentChecks.CheckSys 
+LEFT JOIN dbo.GLAccts WITH (NOLOCK) ON dbo.TranARDetail.GLAcctNo = dbo.GLAccts.GLAcctNo 
+LEFT OUTER JOIN dbo.Plans WITH (NOLOCK) ON dbo.TranARDetail.PlanSys = dbo.Plans.PlanSys 
+
+WHERE     dbo.TranARDetail.TranEndDate &gt;= @TranFromDate and dbo.TranARDetail.TranEndDate &lt;= @TransEndDateTime and dbo.TranARDetail.ReverseFlg IS NULL
+
+/*Start Org Filter in WHERE CLAUSE- Can be Reused*/
+	AND (
+			(@OrgLocation IS NULL)
+			OR (@OrgLocation=1 AND @Organization = Organizations.EntSys1)
+			OR (@OrgLocation=2 AND @Organization = Organizations.EntSys2)
+			OR (@OrgLocation=3 AND @Organization = Organizations.EntSys3)
+			OR (@OrgLocation=4 AND @Organization = Organizations.EntSys4)
+			OR (@OrgLocation=5 AND @Organization = Organizations.EntSys5)
+			OR (@OrgLocation=6 AND @Organization = Organizations.EntSys6)
+			OR (@OrgLocation=7 AND @Organization = Organizations.EntSys7)
+			OR (@OrgLocation=8 AND @Organization = Organizations.EntSys8)
+			OR (@OrgLocation=9 AND @Organization = Organizations.EntSys9)
+			OR (@OrgLocation=10 AND @Organization = Organizations.EntSys10)
+			OR (@OrgLocation=11 AND @Organization = Organizations.EntSys11)
+			OR (@OrgLocation=12 AND @Organization = Organizations.EntSys12)
+			OR (@OrgLocation=13 AND @Organization = Organizations.EntSys13)
+			OR (@OrgLocation=14 AND @Organization = Organizations.EntSys14)
+			OR (@OrgLocation=15 AND @Organization = Organizations.EntSys15)
+		)
+/*End Org Filter - Can be Reused*/
+
+--ORDER BY  Account, CostCenter, TranDate
+
+-- FILTER BY PARAMETERS
+IF @GLExportFromDate IS NOT NULL OR @GLExportThruDate IS NOT NULL 
+BEGIN
+  DELETE 
+  FROM @GLDetail
+  WHERE GLTransDate IS NOT NULL and (GLTransDate &gt; @GLExportThruDate OR GLTransDate &lt; @GLExportFromDate)
+END
+
+IF @IncludeUnExported &lt;&gt; 1
+BEGIN
+  DELETE
+  FROM @GLDetail
+  WHERE GLTransDate IS NULL
+END
+
+
+IF @EntryFromDate IS NOT NULL OR @EntryEndDateTime IS NOT NULL 
+BEGIN
+  DELETE 
+  FROM @GLDetail
+  WHERE EntryDate &gt; @EntryEndDateTime OR EntryDate &lt; @EntryFromDate
+END
+/*
+IF @AccountList IS NOT NULL
+BEGIN
+   DELETE
+   FROM @GLDetail
+   WHERE LTRIM(FullAcctNo) NOT IN (@AccountList)
+END
+
+IF @ServiceList IS NOT Null
+BEGIN
+DELETE
+   FROM @GLDetail
+   WHERE LTRIM(FullAcctNo) NOT IN (@ServiceList)
+END
+
+
+-- SET MISC CODE VALUES
+UPDATE @GLDetail
+SET ARActionType = (SELECT MiscCodes.CodeDesc
+FROM MiscCodes WHERE ARActionType = MiscCodes.MiscCode and MiscCodeType = 'ACT')
+
+UPDATE @GLDetail
+SET AccountType = (SELECT MiscCodes.CodeDesc
+FROM MiscCodes WHERE AccountType = MiscCodes.MiscCode and MiscCodeType = 'ART')
+
+*/
+--MiscCodeType = 'CEN, MST, ADR, PHN'
+
+SELECT * FROM @GLDetail ORDER BY  Account, CostCenter, TranDate</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="OrgBreak">
+          <DataField>OrgBreak</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrgBreakDisplay">
+          <DataField>OrgBreakDisplay</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TranSys">
+          <DataField>TranSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PlanSys">
+          <DataField>PlanSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ARActionType">
+          <DataField>ARActionType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountType">
+          <DataField>AccountType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TranDate">
+          <DataField>TranDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="EntryDate">
+          <DataField>EntryDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UserCreated">
+          <DataField>UserCreated</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="GLTransDate">
+          <DataField>GLTransDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Units">
+          <DataField>Units</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PriceOrigin">
+          <DataField>PriceOrigin</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BatchNumber">
+          <DataField>BatchNumber</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Billed">
+          <DataField>Billed</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AdjType">
+          <DataField>AdjType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StmtBegDate">
+          <DataField>StmtBegDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="StmtEndDate">
+          <DataField>StmtEndDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ApplyToDate">
+          <DataField>ApplyToDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FullAcctNo">
+          <DataField>FullAcctNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Account">
+          <DataField>Account</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CostCenter">
+          <DataField>CostCenter</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrgEntSys">
+          <DataField>OrgEntSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="EpisodeSys">
+          <DataField>EpisodeSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ResidentSys">
+          <DataField>ResidentSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AdvRevFlag">
+          <DataField>AdvRevFlag</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CheckSys">
+          <DataField>CheckSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TranEndDate">
+          <DataField>TranEndDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="MedRecNum">
+          <DataField>MedRecNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ResidentName">
+          <DataField>ResidentName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AdmissionID">
+          <DataField>AdmissionID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PlanDesc">
+          <DataField>PlanDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CheckNumber">
+          <DataField>CheckNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DateReceived">
+          <DataField>DateReceived</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="AcctDescription">
+          <DataField>AcctDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ServiceDesc">
+          <DataField>ServiceDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrgSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>Select OrgSet 
+From OrganizationSets with (nolock) 
+where OrgSetStatus = 'CR'
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgSet">
+          <DataField>OrgSet</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT
+	OrgEntSys,
+	UpperOrgDesc
+FROM
+	Organizations WITH (NOLOCK)
+WHERE	
+	OrgSet =   (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+		)
+	AND OrgLevel &lt;= (
+		SELECT ol.OrgLevel
+		FROM OrganizationLevels AS ol WITH (NOLOCK)
+		WHERE ol.OrgSet =  (
+				Select OrgSet 
+				From OrganizationSets with (nolock) 
+				where OrgSetStatus = 'CR' 
+			)	
+		AND ol.LevelType = 'FA'
+		)	
+ORDER BY
+                UpperOrgDesc, OrgEntSys
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgEntSys">
+          <DataField>OrgEntSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UpperOrgDesc">
+          <DataField>UpperOrgDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationLevelSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT OrgLevel,LevelDesc 
+FROM OrganizationLevels  WITH (NOLOCK) 
+Where OrgSet = (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+	)
+             And OrgLevel &lt;= (Select OrgLevel From OrganizationLevels WITH (NOLOCK) where LevelType = 'FA' 
+				and OrgSet = (
+						Select OrgSet 
+						From OrganizationSets with (nolock) 
+						where OrgSetStatus = 'CR')
+					)
+ORDER BY OrgLevel
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FacilityLevelSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT ol.OrgLevel, ol.LevelAbbrev, ol.LevelDesc 
+FROM dbo.OrganizationLevels AS ol WITH (NOLOCK) 
+WHERE ol.OrgSet = (
+			Select OrgSet 
+			From OrganizationSets with (nolock) 
+			where OrgSetStatus = 'CR'
+		   ) 
+AND ol.LevelType = 'FA'
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelAbbrev">
+          <DataField>LevelAbbrev</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="AccountList">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT DISTINCT GLAcctNo, GLAcctNo + ' - ' + Description AS GLDesc
+FROM            GLAccts
+ORDER BY GLAcctNo</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="GLAcctNo">
+          <DataField>GLAcctNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GLDesc">
+          <DataField>GLDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ServiceList">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT DISTINCT ServiceDesc
+FROM dbo.Services
+WHERE getdate() between BegEffDate and EndEffdate or EndEffDate Is Null</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ServiceDesc">
+          <DataField>ServiceDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="OrgSet">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OrgSet</DataSetName>
+          <ValueField>OrgSet</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Org Set</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrgSet</DataSetName>
+          <ValueField>OrgSet</ValueField>
+          <LabelField>OrgSet</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Organization">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OrganizationSet</DataSetName>
+          <ValueField>OrgEntSys</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Organization</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrganizationSet</DataSetName>
+          <ValueField>OrgEntSys</ValueField>
+          <LabelField>UpperOrgDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="BreakAtOrgLevel">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>FacilityLevelSet</DataSetName>
+          <ValueField>OrgLevel</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Break At Org Level</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrganizationLevelSet</DataSetName>
+          <ValueField>OrgLevel</ValueField>
+          <LabelField>LevelDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="TranFromDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=CDate(MonthName(Month(Today.AddMonths(-1)),False) &amp; " 1, " &amp; Year(Today()).ToString)</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Tran From Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TranThruDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Tran Thru Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EntryFromDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateAdd("m",-1,DateValue(CStr(Month(Now))+"/1/"+CStr(Year(Now))))</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entry From Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EntryThruDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entry Thru Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="GLExportFromDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateAdd("m",-1,DateValue(CStr(Month(Now))+"/1/"+CStr(Year(Now))))</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>GLExport From Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="GLExportThruDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>GLExport Thru Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="IncludeUnExported">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=False</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Include Un Exported</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="AccountList">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>AccountList</DataSetName>
+          <ValueField>GLAcctNo</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Account List</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>AccountList</DataSetName>
+          <ValueField>GLAcctNo</ValueField>
+          <LabelField>GLDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ServiceList">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>ServiceList</DataSetName>
+          <ValueField>ServiceDesc</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Servicelist</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ServiceList</DataSetName>
+          <ValueField>ServiceDesc</ValueField>
+          <LabelField>ServiceDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>9ddc8688-e544-4ce0-b907-9e98126f6bcf</rd:ReportID>
+</Report>

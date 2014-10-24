@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+	<DataSources>
+		<DataSource Name="MainConnect">
+			<DataSourceReference>MainConnect</DataSourceReference>
+			<rd:SecurityType>None</rd:SecurityType>
+			<rd:DataSourceID>6ca80f4e-1904-4ea1-8dc0-036643c38120</rd:DataSourceID>
+		</DataSource>
+	</DataSources>
+	
+	<ReportParameters>
+
+    <ReportParameter Name="OrgSet">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OrgSet</DataSetName>
+          <ValueField>OrgSet</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Org Set</Prompt>
+      <Hidden>true</Hidden>
+      <HMXParameter>
+		<HMXDefaultSession>OrgSet</HMXDefaultSession> 
+	  </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="Organization">
+      <DataType>Integer</DataType>
+      <Prompt>Organizations</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrganizationSet</DataSetName>
+          <ValueField>OrgEntSys</ValueField>
+          <LabelField>UpperOrgDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+      <HMXParameter>
+		<HMXControlType>OrganizationSelection</HMXControlType>
+		<HMXZone>1</HMXZone>
+	  </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="BreakAtOrgLevel">
+		<DataType>Integer</DataType>
+		<DefaultValue>
+			<Values>
+				<Value>60</Value>
+			</Values>
+		</DefaultValue>
+		<Prompt>Break At Org Level</Prompt>
+		<ValidValues>
+			<DataSetReference>
+				<DataSetName>FacilityLevelSet</DataSetName>
+				<ValueField>OrgLevel</ValueField>
+				<LabelField>LevelDesc</LabelField>
+			</DataSetReference>
+		</ValidValues>
+		<HMXParameter>
+			<HMXAssociatedParameter>SortControl</HMXAssociatedParameter>
+			<HMXUserPreferences>Template</HMXUserPreferences>
+		</HMXParameter>
+	</ReportParameter>
+	
+	<ReportParameter Name="SortControl">
+      <DataType>Integer</DataType>
+	  <Prompt>Sort by</Prompt>
+	  <MultiValue>true</MultiValue>
+	  <HMXParameter>
+		<HMXControlType>SortControl</HMXControlType>
+		<HMXControlProperties>
+			<IsRequired>False</IsRequired>
+			<OrgLevelSort>True</OrgLevelSort>
+		</HMXControlProperties>
+		<HMXZone>5</HMXZone>
+		<HMXUserPreferences>Template</HMXUserPreferences>
+		<HMXAssociatedParameter>BreakAtOrgLevel</HMXAssociatedParameter>
+		  <HMXDisplayOrder>1</HMXDisplayOrder>
+	  </HMXParameter>
+	</ReportParameter>
+    
+    <ReportParameter Name="TranFromDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateAdd("m",-1,DateValue(CStr(Month(Now))+"/1/"+CStr(Year(Now))))</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Tran From Date</Prompt>
+      <HMXParameter>
+		<HMXControlType>DateControl</HMXControlType>
+		<HMXControlProperties>
+			<IsRange>True</IsRange>
+			<ShowLabel>True</ShowLabel>
+			<Label>Transaction Date Range</Label>
+			<EndDateLabel>To</EndDateLabel>
+			<BeginDateLabel>From</BeginDateLabel>
+		</HMXControlProperties>
+            <HMXAssociatedParameter>TranThruDate</HMXAssociatedParameter>
+            <HMXZone>2-1</HMXZone>
+            <HMXDisplayOrder>2</HMXDisplayOrder>
+       </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="TranThruDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Tran Thru Date</Prompt>
+      <HMXParameter>
+		<HMXAssociatedParameter>TranFromDate</HMXAssociatedParameter>
+	  </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="EntryFromDate">
+      <DataType>DateTime</DataType>
+       <DefaultValue>
+        <Values>
+          <Value>=DateAdd("m",-1,DateValue(CStr(Month(Now))+"/1/"+CStr(Year(Now))))</Value>
+        </Values>
+       </DefaultValue>
+      <Prompt>Entry From Date</Prompt>
+      <HMXParameter>
+		<HMXControlType>DateControl</HMXControlType>
+		<HMXControlProperties>
+			<IsRange>True</IsRange>
+			<ShowLabel>True</ShowLabel>
+			<Label>Entry Date Range</Label>
+			<EndDateLabel>To</EndDateLabel>
+			<BeginDateLabel>From</BeginDateLabel>
+		</HMXControlProperties>
+            <HMXAssociatedParameter>EntryThruDate</HMXAssociatedParameter>
+            <HMXZone>2-2</HMXZone>
+            <HMXDisplayOrder>2</HMXDisplayOrder>
+       </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="EntryThruDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entry Thru Date</Prompt>
+      <HMXParameter>
+		<HMXAssociatedParameter>EntryStartDate</HMXAssociatedParameter>
+	  </HMXParameter>
+    </ReportParameter>
+        
+    <ReportParameter Name="GLExportFromDate">
+      <DataType>DateTime</DataType>
+       <DefaultValue>
+        <Values>
+          <Value>=DateValue(CStr(Month(Now))+"/1/"+CStr(Year(Now)))</Value>
+        </Values>
+       </DefaultValue>
+      <Prompt>GLExport From Date</Prompt>
+      <HMXParameter>
+		<HMXControlType>DateControl</HMXControlType>
+		<HMXControlProperties>
+			<IsRange>True</IsRange>
+			<ShowLabel>True</ShowLabel>
+			<Label>GL Exported Between</Label>
+			<EndDateLabel>To</EndDateLabel>
+			<BeginDateLabel>From</BeginDateLabel>
+		</HMXControlProperties>
+            <HMXAssociatedParameter>GLExportThruDate</HMXAssociatedParameter>
+            <HMXZone>3-1</HMXZone>
+            <HMXDisplayOrder>2</HMXDisplayOrder>
+       </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="GLExportThruDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>GLExport Thru Date</Prompt>
+      <HMXParameter>
+		<HMXAssociatedParameter>GLExportFromDate</HMXAssociatedParameter>
+	  </HMXParameter>
+    </ReportParameter>
+    
+    
+    <ReportParameter Name="AccountList">
+      <DataType>String</DataType>
+      <Prompt>Account List</Prompt>
+     <DefaultValue>
+        <DataSetReference>
+          <DataSetName>AccountList</DataSetName>
+          <ValueField>GLAcctNo</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>AccountList</DataSetName>
+          <ValueField>GLAcctNo</ValueField>
+          <LabelField>GLDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    <HMXParameter>
+        <HMXControlType>SelectBox</HMXControlType>
+        <HMXControlProperties>
+              <ShowLabel>True</ShowLabel>
+              <Label>GL Account Number</Label>
+              <LabelPosition>1</LabelPosition>
+              <Width>200</Width>
+              <IsRequired>False</IsRequired>
+        </HMXControlProperties>
+        <HMXZone>3-3</HMXZone>
+        <HMXUserPreferences>Template</HMXUserPreferences>
+        <HMXDisplayOrder>1</HMXDisplayOrder>
+    </HMXParameter>
+    </ReportParameter>
+  <ReportParameter Name="ServiceList">
+      <DataType>String</DataType>
+     <DefaultValue>
+        <DataSetReference>
+          <DataSetName>ServiceList</DataSetName>
+          <ValueField>ServiceDesc</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Servicelist</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ServiceList</DataSetName>
+          <ValueField>ServiceDesc</ValueField>
+          <LabelField>ServiceDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+
+   <HMXParameter>
+        <HMXControlType>SelectBox</HMXControlType>
+        <HMXControlProperties>
+              <ShowLabel>True</ShowLabel>
+              <Label>Service/Product Type</Label>
+              <LabelPosition>1</LabelPosition>
+              <Width>200</Width>
+          <Height>300</Height>
+              <IsRequired>False</IsRequired>
+        </HMXControlProperties>
+        <HMXZone>3-4</HMXZone>
+        <HMXUserPreferences>Template</HMXUserPreferences>
+        <HMXDisplayOrder>1</HMXDisplayOrder>
+    </HMXParameter>
+    </ReportParameter>
+  </ReportParameters>
+	
+  <DataSets>
+    <DataSet Name="ReportDataSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@TranThruDate">
+            <Value>=Parameters!TranThruDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EntryThruDate">
+            <Value>=Parameters!EntryThruDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@OrgSet">
+            <Value>=Parameters!OrgSet.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Organization">
+            <Value>=Parameters!Organization.Value</Value>
+            <HMXFilter_1> AND (@HMXOrganizationFilter(vwOrganizations)) </HMXFilter_1>
+          </QueryParameter>
+          <QueryParameter Name="@BreakAtOrgLevel">
+            <Value>=Parameters!BreakAtOrgLevel.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TranFromDate">
+            <Value>=Parameters!TranFromDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@GLExportFromDate">
+            <Value>=Parameters!GLExportFromDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@GLExportThruDate">
+            <Value>=Parameters!GLExportThruDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EntryFromDate">
+            <Value>=Parameters!EntryFromDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@AccountList">
+            <Value>=Parameters!AccountList.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        <QueryParameter Name="@SeviceList">
+            <Value>=Parameters!ServiceList.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>/*Census Training Report*/
+
+-- Declare Input parameters
+
+
+		DECLARE @TransEndDateTime DATETIME
+		SET @TransEndDateTime=cast((convert(char(10),@TranThruDate,101) + ' 23:59:59') as datetime)
+
+		DECLARE @EntryEndDateTime SMALLDATETIME
+		SET @EntryEndDateTime=cast((convert(char(10),@EntryThruDate,101) + ' 23:59:59') as datetime)
+    
+    DECLARE @GLExportEndDateTime SMALLDATETIME
+		SET @GLExportEndDateTime=cast((convert(char(10),@GLExportThruDate,101) + ' 23:59:59') as datetime)
+		
+	/*  DECLARE @AccountList2 VARCHAR(max)
+		SET @AccountList2 = '0';
+		SELECT @AccountList2 = ISNULL(@AccountList, '') + '''' + GLAcctNo + ''''
+		FROM dbo.GLAccts WITH (NOLOCK)
+		WHERE GLAccts.GLAcctNo IN (@AccountList2);*/
+
+/*Start OrgBreak Queries - Can be Reused - Builds variable for Org Level Selection Control*/
+/*	DECLARE @OrgLocation TINYINT
+	SELECT @OrgLocation = (
+		SELECT 
+			COUNT(*)
+		FROM 
+			Organizations (NOLOCK)
+		INNER JOIN OrganizationLevels (NOLOCK) ON OrganizationLevels.OrgSet = Organizations.OrgSet
+			AND OrganizationLevels.OrgLevel &gt;= Organizations.OrgLevel
+		WHERE
+			Organizations.OrgSet = @OrgSet
+			AND Organizations.OrgEntSys = @Organization)
+*/
+	DECLARE @BreakAtOrgLevelLocation TINYINT
+	SELECT @BreakAtOrgLevelLocation = (
+		SELECT 
+			COUNT(*)
+		FROM 
+			OrganizationLevels (NOLOCK)
+		WHERE 
+			OrganizationLevels.OrgSet = @OrgSet
+			AND OrganizationLevels.OrgLevel &gt;= @BreakAtOrgLevel)
+/*End OrgBreak Queries - Can be Reused*/
+
+--Create Temp Table for results
+Declare @GLDetail Table(
+	OrgBreak varchar(max),
+	OrgBreakDisplay varchar(max),
+	TranSys int NOT NULL,
+	PlanSys int NULL,
+	ARActionType varchar(max) NULL,
+	AccountType varchar(max) NULL,
+	TranDate smalldatetime NULL,
+	Amount money NULL,
+	EntryDate datetime NULL,
+	UserCreated int NULL,
+	GLTransDate datetime NULL,
+	Units money NULL,
+	PriceOrigin char(2) NULL,
+	BatchNumber int NULL,
+	Billed char(1) NULL,
+	AdjType char(2) NULL,
+	StmtBegDate smalldatetime NULL,
+	StmtEndDate smalldatetime NULL,
+	ApplyToDate smalldatetime NULL,
+	FullAcctNo varchar(max) NULL,
+	Account varchar(max) NULL,
+	CostCenter varchar(max) NULL,
+	OrgEntSys int NULL,
+	EpisodeSys int NULL,
+	ResidentSys int NULL,
+	AdvRevFlag char(1) NULL,
+	CheckSys int NULL,
+	TranEndDate smalldatetime NULL,
+	MedRecNum varchar(max),
+    ResidentName varchar(max),
+    AdmissionID varchar(max),
+    PlanDesc varchar(max),
+    CheckNumber varchar(max),
+    DateReceived smalldatetime, 
+    AcctDescription varchar(max),
+    ServiceDesc varchar(max))
+    
+Insert Into @GLDetail(        
+	OrgBreak,
+	OrgBreakDisplay,
+	TranSys,
+	PlanSys,
+	ARActionType,
+	AccountType,
+	TranDate,
+	Amount,
+	EntryDate,
+	UserCreated,
+	GLTransDate,
+	Units,
+	PriceOrigin,
+	BatchNumber,
+	Billed,
+	AdjType,
+	StmtBegDate,
+	StmtEndDate,
+	ApplyToDate,
+	FullAcctNo,
+	Account,
+	CostCenter,
+	OrgEntSys,
+	EpisodeSys,
+	ResidentSys,
+	AdvRevFlag,
+	CheckSys,
+	TranEndDate,
+	MedRecNum,
+    ResidentName,
+    AdmissionID,
+    PlanDesc,
+    CheckNumber,
+    DateReceived,
+    AcctDescription,
+    ServiceDesc)
+
+/*Start - Builds out Org Break - Can be reused*/
+SELECT  DISTINCT
+ISNULL(
+		(
+			CASE	
+				WHEN @BreakAtOrgLevelLocation = 1 THEN vwOrganizations.Ent1
+				WHEN @BreakAtOrgLevelLocation = 2 THEN vwOrganizations.Ent2
+				WHEN @BreakAtOrgLevelLocation = 3 THEN vwOrganizations.Ent3
+				WHEN @BreakAtOrgLevelLocation = 4 THEN vwOrganizations.Ent4
+				WHEN @BreakAtOrgLevelLocation = 5 THEN vwOrganizations.Ent5
+				WHEN @BreakAtOrgLevelLocation = 6 THEN vwOrganizations.Ent6
+				WHEN @BreakAtOrgLevelLocation = 7 THEN vwOrganizations.Ent7
+				WHEN @BreakAtOrgLevelLocation = 8 THEN vwOrganizations.Ent8
+				WHEN @BreakAtOrgLevelLocation = 9 THEN vwOrganizations.Ent9
+				WHEN @BreakAtOrgLevelLocation = 10 THEN vwOrganizations.Ent10
+				WHEN @BreakAtOrgLevelLocation = 11 THEN vwOrganizations.Ent11
+				WHEN @BreakAtOrgLevelLocation = 12 THEN vwOrganizations.Ent12
+				WHEN @BreakAtOrgLevelLocation = 13 THEN vwOrganizations.Ent13
+				WHEN @BreakAtOrgLevelLocation = 14 THEN vwOrganizations.Ent14
+				WHEN @BreakAtOrgLevelLocation = 15 THEN vwOrganizations.Ent15
+			END
+				),vwOrganizations.OrgEntSys) AS OrgBreak,
+				vwOrganizations.FullOrgDesc,
+/*End - Builds out Org Break - Can be reused*/
+
+dbo.TranARDetail.TranSys, 
+dbo.TranARDetail.PlanSys, 
+dbo.TranARDetail.ARActionType, 
+dbo.TranARDetail.AccountType, 
+dbo.TranARDetail.TranDate, 
+dbo.TranARDetail.Amount, 
+dbo.TranARDetail.EntryDate, 
+dbo.TranARDetail.UserCreated, 
+dbo.TranARDetail.GLTransDate, 
+dbo.TranARDetail.Units, 
+dbo.TranARDetail.PriceOrigin, 
+dbo.TranARDetail.BatchNumber, 
+dbo.TranARDetail.Billed, 
+dbo.TranARDetail.AdjType, 
+dbo.TranARDetail.StmtBegDate,
+dbo.TranARDetail.StmtEndDate, 
+dbo.TranARDetail.ApplyToDate, 
+dbo.TranARDetail.GLAcctNo AS FullAcct, 
+LEFT(dbo.TranARDetail.GLAcctNo, 4) AS Account, 
+RIGHT(dbo.TranARDetail.GLAcctNo, 3) AS CostCenter, 
+dbo.TranARDetail.OrgEntSys, 
+dbo.TranARDetail.EpisodeSys, 
+dbo.TranARDetail.ResidentSys,
+dbo.TranARDetail.AdvRevFlag, 
+dbo.TranARDetail.CheckSys, 
+dbo.TranARDetail.TranEndDate, 
+ResEnt.InternalID, 
+ResEnt.DisplayName, 
+dbo.Episodes.AdmissionID,
+dbo.Plans.PlanDesc, 
+dbo.PaymentChecks.CheckNumber, 
+dbo.PaymentChecks.ReceivedDate, 
+dbo.GLAccts.Description,
+dbo.Services.ServiceDesc + '(' + CONVERT(varchar(20),dbo.Services.ServiceSys) + ')' As ServiceDesc
+FROM         dbo.TranARDetail 
+  INNER JOIN dbo.vwOrganizations WITH (NOLOCK) ON dbo.TranARDetail.OrgEntSys = dbo.vwOrganizations.OrgEntSys
+  INNER JOIN dbo.Episodes WITH (NOLOCK) ON dbo.TranARDetail.EpisodeSys = dbo.Episodes.EpisodeSys 
+  INNER JOIN dbo.Entities AS ResEnt WITH (NOLOCK) ON dbo.TranARDetail.ResidentSys = ResEnt.EntitySys
+  INNER JOIN dbo.TranService WITH (NOLOCK) ON dbo.TranARDetail.TranSys = dbo.TranService.TranSys 
+  INNER JOIN dbo.Services WITH (NOLOCK) ON dbo.TranService.ServiceSys = dbo.Services.ServiceSys 
+  LEFT JOIN dbo.PaymentChecks WITH (NOLOCK) ON dbo.TranARDetail.CheckSys = dbo.PaymentChecks.CheckSys 
+  LEFT JOIN dbo.GLAccts WITH (NOLOCK) ON dbo.TranARDetail.GLAcctNo = dbo.GLAccts.GLAcctNo 
+  LEFT OUTER JOIN dbo.Plans WITH (NOLOCK) ON dbo.TranARDetail.PlanSys = dbo.Plans.PlanSys 
+  
+WHERE  dbo.TranARDetail.TranEndDate &gt;= @TranFromDate 
+	        and dbo.TranARDetail.TranEndDate &lt;= @TransEndDateTime
+          and dbo.TranARDetail.ReverseFlg IS NULL
+          AND TranARDetail.EntryDate BETWEEN @EntryFromDate and @EntryEndDateTime
+          AND (TranARDetail.GLTransDate BETWEEN @GLExportFromDate and @GLExportEndDateTime OR TranARDetail.GLTransDate IS NULL)
+
+          @Organization_1
+
+--Filtering by Accounts and Services is happening at the Report Layer....I was unsuccessful getting the multi-value parameter converted to SQL      
+
+SELECT * FROM @GLDetail ORDER BY  Account, CostCenter, TranDate
+</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="OrgBreak">
+          <DataField>OrgBreak</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrgBreakDisplay">
+          <DataField>OrgBreakDisplay</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TranSys">
+          <DataField>TranSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PlanSys">
+          <DataField>PlanSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ARActionType">
+          <DataField>ARActionType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AccountType">
+          <DataField>AccountType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TranDate">
+          <DataField>TranDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="EntryDate">
+          <DataField>EntryDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UserCreated">
+          <DataField>UserCreated</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="GLTransDate">
+          <DataField>GLTransDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Units">
+          <DataField>Units</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PriceOrigin">
+          <DataField>PriceOrigin</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BatchNumber">
+          <DataField>BatchNumber</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Billed">
+          <DataField>Billed</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AdjType">
+          <DataField>AdjType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StmtBegDate">
+          <DataField>StmtBegDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="StmtEndDate">
+          <DataField>StmtEndDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ApplyToDate">
+          <DataField>ApplyToDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FullAcctNo">
+          <DataField>FullAcctNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Account">
+          <DataField>Account</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CostCenter">
+          <DataField>CostCenter</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrgEntSys">
+          <DataField>OrgEntSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="EpisodeSys">
+          <DataField>EpisodeSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ResidentSys">
+          <DataField>ResidentSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AdvRevFlag">
+          <DataField>AdvRevFlag</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CheckSys">
+          <DataField>CheckSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TranEndDate">
+          <DataField>TranEndDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="MedRecNum">
+          <DataField>MedRecNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ResidentName">
+          <DataField>ResidentName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AdmissionID">
+          <DataField>AdmissionID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PlanDesc">
+          <DataField>PlanDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CheckNumber">
+          <DataField>CheckNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DateReceived">
+          <DataField>DateReceived</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="AcctDescription">
+          <DataField>AcctDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ServiceDesc">
+          <DataField>ServiceDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrgSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>Select OrgSet 
+From OrganizationSets with (nolock) 
+where OrgSetStatus = 'CR'
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgSet">
+          <DataField>OrgSet</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT
+	OrgEntSys,
+	UpperOrgDesc
+FROM
+	Organizations WITH (NOLOCK)
+WHERE	
+	OrgSet =   (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+		)
+	AND OrgLevel &lt;= (
+		SELECT ol.OrgLevel
+		FROM OrganizationLevels AS ol WITH (NOLOCK)
+		WHERE ol.OrgSet =  (
+				Select OrgSet 
+				From OrganizationSets with (nolock) 
+				where OrgSetStatus = 'CR' 
+			)	
+		AND ol.LevelType = 'FA'
+		)	
+ORDER BY
+                UpperOrgDesc, OrgEntSys
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgEntSys">
+          <DataField>OrgEntSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UpperOrgDesc">
+          <DataField>UpperOrgDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationLevelSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT OrgLevel,LevelDesc 
+FROM OrganizationLevels  WITH (NOLOCK) 
+Where OrgSet = (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+	)
+             And OrgLevel &lt;= (Select OrgLevel From OrganizationLevels WITH (NOLOCK) where LevelType = 'FA' 
+				and OrgSet = (
+						Select OrgSet 
+						From OrganizationSets with (nolock) 
+						where OrgSetStatus = 'CR')
+					)
+ORDER BY OrgLevel
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FacilityLevelSet">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT ol.OrgLevel, ol.LevelAbbrev, ol.LevelDesc 
+FROM dbo.OrganizationLevels AS ol WITH (NOLOCK) 
+WHERE ol.OrgSet = (
+			Select OrgSet 
+			From OrganizationSets with (nolock) 
+			where OrgSetStatus = 'CR'
+		   ) 
+AND ol.LevelType = 'FA'
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelAbbrev">
+          <DataField>LevelAbbrev</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="AccountList">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT DISTINCT GLAcctNo, GLAcctNo + ' - ' + Description AS GLDesc
+					FROM GLAccts
+					ORDER BY GLAcctNo
+		</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="GLAcctNo">
+          <DataField>GLAcctNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GLDesc">
+          <DataField>GLDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+   <DataSet Name="ServiceList">
+      <Query>
+        <DataSourceName>MainConnect</DataSourceName>
+        <CommandText>SELECT dbo.Services.ServiceDesc + '(' + CONVERT(varchar(20),dbo.Services.ServiceSys) + ')' As ServiceDesc
+FROM dbo.Services
+WHERE getdate() between BegEffDate and EndEffdate or EndEffDate Is Null
+Order By ServiceTypeCode, ServiceDesc</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ServiceDesc">
+          <DataField>ServiceDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+
+
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>9ddc8688-e544-4ce0-b907-9e98126f6bcf</rd:ReportID>
+</Report>
