@@ -187,8 +187,35 @@
 		<HMXAssociatedParameter>GLExportFromDate</HMXAssociatedParameter>
 	  </HMXParameter>
     </ReportParameter>
+	<ReportParameter Name="IncludeUnExported">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=cBool(0)</Value>
+        </Values>
+      </DefaultValue>
+	  <AllowBlank>true</AllowBlank>
+	  <ValidValues>
+	  <ParameterValues>
+		<ParameterValue>
+			<Value>True</Value>
+			<Label>Include</Label>
+		</ParameterValue>
+		<ParameterValue>
+			<Value>False</Value>
+			<Label>Exclude</Label>
+		</ParameterValue>
+	  </ParameterValues>
+	  </ValidValues>
+      <Prompt>Include UnExported</Prompt>
+		<HMXParameter>
+			<HMXControlType>Radiobutton</HMXControlType>
+			<HMXAssociatedParameter>IncludeUnExported</HMXAssociatedParameter>
+			<HMXZone>3-2</HMXZone>
+		</HMXParameter>
+    </ReportParameter>
     
-    
+   
     <ReportParameter Name="AccountList">
       <DataType>String</DataType>
       <Prompt>Account List</Prompt>
@@ -225,14 +252,14 @@
      <DefaultValue>
         <DataSetReference>
           <DataSetName>ServiceList</DataSetName>
-          <ValueField>ServiceDesc</ValueField>
+          <ValueField>ServiceSys</ValueField>
         </DataSetReference>
       </DefaultValue>
       <Prompt>Servicelist</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>ServiceList</DataSetName>
-          <ValueField>ServiceDesc</ValueField>
+          <ValueField>ServiceSys</ValueField>
           <LabelField>ServiceDesc</LabelField>
         </DataSetReference>
       </ValidValues>
@@ -288,18 +315,21 @@
           <QueryParameter Name="@EntryFromDate">
             <Value>=Parameters!EntryFromDate.Value</Value>
           </QueryParameter>
+		  <QueryParameter Name="@IncludeUnExported">
+            <Value>=Parameters!IncludeUnExported.Value</Value>
+          </QueryParameter>
           <QueryParameter Name="@AccountList">
             <Value>=Parameters!AccountList.Value</Value>
             <rd:UserDefined>true</rd:UserDefined>
           </QueryParameter>
-        <QueryParameter Name="@SeviceList">
+        <QueryParameter Name="@ServiceList">
             <Value>=Parameters!ServiceList.Value</Value>
             <rd:UserDefined>true</rd:UserDefined>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>/*Census Training Report*/
+        <CommandText><![CDATA[
 
--- Declare Input parameters
+		-- Declare Input parameters
 
 
 		DECLARE @TransEndDateTime DATETIME
@@ -311,25 +341,21 @@
     DECLARE @GLExportEndDateTime SMALLDATETIME
 		SET @GLExportEndDateTime=cast((convert(char(10),@GLExportThruDate,101) + ' 23:59:59') as datetime)
 		
-	/*  DECLARE @AccountList2 VARCHAR(max)
-		SET @AccountList2 = '0';
-		SELECT @AccountList2 = ISNULL(@AccountList, '') + '''' + GLAcctNo + ''''
-		FROM dbo.GLAccts WITH (NOLOCK)
-		WHERE GLAccts.GLAcctNo IN (@AccountList2);*/
+    --SET @AccountList = ',' + @AccountList
 
 /*Start OrgBreak Queries - Can be Reused - Builds variable for Org Level Selection Control*/
-/*	DECLARE @OrgLocation TINYINT
+	DECLARE @OrgLocation TINYINT
 	SELECT @OrgLocation = (
 		SELECT 
 			COUNT(*)
 		FROM 
 			Organizations (NOLOCK)
 		INNER JOIN OrganizationLevels (NOLOCK) ON OrganizationLevels.OrgSet = Organizations.OrgSet
-			AND OrganizationLevels.OrgLevel &gt;= Organizations.OrgLevel
+			AND OrganizationLevels.OrgLevel >= Organizations.OrgLevel
 		WHERE
 			Organizations.OrgSet = @OrgSet
 			AND Organizations.OrgEntSys = @Organization)
-*/
+
 	DECLARE @BreakAtOrgLevelLocation TINYINT
 	SELECT @BreakAtOrgLevelLocation = (
 		SELECT 
@@ -338,8 +364,11 @@
 			OrganizationLevels (NOLOCK)
 		WHERE 
 			OrganizationLevels.OrgSet = @OrgSet
-			AND OrganizationLevels.OrgLevel &gt;= @BreakAtOrgLevel)
+			AND OrganizationLevels.OrgLevel >= @BreakAtOrgLevel)
 /*End OrgBreak Queries - Can be Reused*/
+
+
+
 
 --Create Temp Table for results
 Declare @GLDetail Table(
@@ -378,7 +407,8 @@ Declare @GLDetail Table(
     CheckNumber varchar(max),
     DateReceived smalldatetime, 
     AcctDescription varchar(max),
-    ServiceDesc varchar(max))
+    ServiceDesc varchar(max),
+	ServiceSys int NULL)
     
 Insert Into @GLDetail(        
 	OrgBreak,
@@ -416,7 +446,8 @@ Insert Into @GLDetail(
     CheckNumber,
     DateReceived,
     AcctDescription,
-    ServiceDesc)
+    ServiceDesc,
+	ServiceSys)
 
 /*Start - Builds out Org Break - Can be reused*/
 SELECT  DISTINCT
@@ -476,7 +507,8 @@ dbo.Plans.PlanDesc,
 dbo.PaymentChecks.CheckNumber, 
 dbo.PaymentChecks.ReceivedDate, 
 dbo.GLAccts.Description,
-dbo.Services.ServiceDesc + '(' + CONVERT(varchar(20),dbo.Services.ServiceSys) + ')' As ServiceDesc
+dbo.Services.ServiceDesc + '(' + CONVERT(varchar(20),dbo.Services.ServiceSys) + ')' As ServiceDesc,
+dbo.Services.ServiceSys
 FROM         dbo.TranARDetail 
   INNER JOIN dbo.vwOrganizations WITH (NOLOCK) ON dbo.TranARDetail.OrgEntSys = dbo.vwOrganizations.OrgEntSys
   INNER JOIN dbo.Episodes WITH (NOLOCK) ON dbo.TranARDetail.EpisodeSys = dbo.Episodes.EpisodeSys 
@@ -487,17 +519,44 @@ FROM         dbo.TranARDetail
   LEFT JOIN dbo.GLAccts WITH (NOLOCK) ON dbo.TranARDetail.GLAcctNo = dbo.GLAccts.GLAcctNo 
   LEFT OUTER JOIN dbo.Plans WITH (NOLOCK) ON dbo.TranARDetail.PlanSys = dbo.Plans.PlanSys 
   
-WHERE  dbo.TranARDetail.TranEndDate &gt;= @TranFromDate 
-	        and dbo.TranARDetail.TranEndDate &lt;= @TransEndDateTime
+WHERE  dbo.TranARDetail.TranEndDate >= @TranFromDate 
+	        and dbo.TranARDetail.TranEndDate <= @TransEndDateTime
           and dbo.TranARDetail.ReverseFlg IS NULL
           AND TranARDetail.EntryDate BETWEEN @EntryFromDate and @EntryEndDateTime
           AND (TranARDetail.GLTransDate BETWEEN @GLExportFromDate and @GLExportEndDateTime OR TranARDetail.GLTransDate IS NULL)
+		AND (TranARDetail.GLAcctNo IN (@AccountList) or dbo.TranArDetail.GLAcctNo IS NULL)
+		AND Services.ServiceSys IN (@ServiceList)
+		
 
-          @Organization_1
+	AND (
+			(@OrgLocation IS NULL)
+			OR (@OrgLocation=1 AND @Organization = vwOrganizations.Ent1)
+			OR (@OrgLocation=2 AND @Organization = vwOrganizations.Ent2)
+			OR (@OrgLocation=3 AND @Organization = vwOrganizations.Ent3)
+			OR (@OrgLocation=4 AND @Organization = vwOrganizations.Ent4)
+			OR (@OrgLocation=5 AND @Organization = vwOrganizations.Ent5)
+			OR (@OrgLocation=6 AND @Organization = vwOrganizations.Ent6)
+			OR (@OrgLocation=7 AND @Organization = vwOrganizations.Ent7)
+			OR (@OrgLocation=8 AND @Organization = vwOrganizations.Ent8)
+			OR (@OrgLocation=9 AND @Organization = vwOrganizations.Ent9)
+			OR (@OrgLocation=10 AND @Organization = vwOrganizations.Ent10)
+			OR (@OrgLocation=11 AND @Organization = vwOrganizations.Ent11)
+			OR (@OrgLocation=12 AND @Organization = vwOrganizations.Ent12)
+			OR (@OrgLocation=13 AND @Organization = vwOrganizations.Ent13)
+			OR (@OrgLocation=14 AND @Organization = vwOrganizations.Ent14)
+			OR (@OrgLocation=15 AND @Organization = vwOrganizations.Ent15)
+		)
+         
 
---Filtering by Accounts and Services is happening at the Report Layer....I was unsuccessful getting the multi-value parameter converted to SQL      
+  IF @IncludeUnExported <> 1
+BEGIN
+  DELETE
+  FROM @GLDetail
+  WHERE GLTransDate IS NULL
+END
 
 SELECT * FROM @GLDetail ORDER BY  Account, CostCenter, TranDate
+]]>
 </CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
@@ -646,6 +705,10 @@ SELECT * FROM @GLDetail ORDER BY  Account, CostCenter, TranDate
           <DataField>ServiceDesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+		<Field Name="ServiceSys">
+          <DataField>ServiceDesc</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="OrgSet">
@@ -782,12 +845,16 @@ AND ol.LevelType = 'FA'
    <DataSet Name="ServiceList">
       <Query>
         <DataSourceName>MainConnect</DataSourceName>
-        <CommandText>SELECT dbo.Services.ServiceDesc + '(' + CONVERT(varchar(20),dbo.Services.ServiceSys) + ')' As ServiceDesc
+        <CommandText>SELECT dbo.Services.ServiceSys, dbo.Services.ServiceDesc + '(' + CONVERT(varchar(20),dbo.Services.ServiceSys) + ')' As ServiceDesc
 FROM dbo.Services
 WHERE getdate() between BegEffDate and EndEffdate or EndEffDate Is Null
 Order By ServiceTypeCode, ServiceDesc</CommandText>
       </Query>
       <Fields>
+	  <Field Name="ServiceSys">
+          <DataField>ServiceSys</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
         <Field Name="ServiceDesc">
           <DataField>ServiceDesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>

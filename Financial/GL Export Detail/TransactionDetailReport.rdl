@@ -1337,22 +1337,6 @@
                 <GroupExpressions>
                   <GroupExpression>=Fields!FullAcctNo.Value</GroupExpression>
                 </GroupExpressions>
-                <Filters>
-                  <Filter>
-                    <FilterExpression>=Fields!FullAcctNo.Value</FilterExpression>
-                    <Operator>In</Operator>
-                    <FilterValues>
-                      <FilterValue>=Parameters!AccountList.Value</FilterValue>
-                    </FilterValues>
-                  </Filter>
-                  <Filter>
-                    <FilterExpression>=Fields!ServiceDesc.Value</FilterExpression>
-                    <Operator>In</Operator>
-                    <FilterValues>
-                      <FilterValue>=Parameters!ServiceList.Value</FilterValue>
-                    </FilterValues>
-                  </Filter>
-                </Filters>
               </Group>
               <SortExpressions>
                 <SortExpression>
@@ -1386,15 +1370,6 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>ReportDataSet</DataSetName>
-        <Filters>
-          <Filter>
-            <FilterExpression>=Fields!ServiceDesc.Value</FilterExpression>
-            <Operator>In</Operator>
-            <FilterValues>
-              <FilterValue>=Parameters!ServiceList.Value</FilterValue>
-            </FilterValues>
-          </Filter>
-        </Filters>
         <Top>1.085in</Top>
         <Height>1.28365in</Height>
         <Width>9.92708in</Width>
@@ -1478,6 +1453,20 @@
               </TextRun>
               <TextRun>
                 <Value>=FormatDateTime(Parameters!GLExportThruDate.Value,DateFormat.ShortDate)</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+			  <TextRun>
+                <Value>        UnExported Included: </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Parameters!IncludeUnExported.Value</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
                   <FontWeight>Normal</FontWeight>
@@ -1600,8 +1589,12 @@
           <QueryParameter Name="@EntryFromDate">
             <Value>=Parameters!EntryFromDate.Value</Value>
           </QueryParameter>
+		  <QueryParameter Name="@ServiceList">
+            <Value>=Parameters!ServiceList.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
         </QueryParameters>
-        <CommandText>/*Census Training Report*/
+        <CommandText><![CDATA[
 
 -- Declare Input parameters
 /*
@@ -1629,11 +1622,19 @@ SET @IncludeUnExported = 0
 SET @AccountList = ''
 SET @BreakAtOrgLevel = 60
 */
-			DECLARE @TransEndDateTime DATETIME
-			SET @TransEndDateTime=cast((convert(char(10),@TranThruDate,101) + ' 23:59:59') as datetime)
+-- Declare Input parameters
 
-			DECLARE @EntryEndDateTime SMALLDATETIME
-			SET @EntryEndDateTime=cast((convert(char(10),@EntryThruDate,101) + ' 23:59:59') as datetime)
+
+		DECLARE @TransEndDateTime DATETIME
+		SET @TransEndDateTime=cast((convert(char(10),@TranThruDate,101) + ' 23:59:59') as datetime)
+
+		DECLARE @EntryEndDateTime SMALLDATETIME
+		SET @EntryEndDateTime=cast((convert(char(10),@EntryThruDate,101) + ' 23:59:59') as datetime)
+    
+    DECLARE @GLExportEndDateTime SMALLDATETIME
+		SET @GLExportEndDateTime=cast((convert(char(10),@GLExportThruDate,101) + ' 23:59:59') as datetime)
+		
+    --SET @AccountList = ',' + @AccountList
 
 /*Start OrgBreak Queries - Can be Reused - Builds variable for Org Level Selection Control*/
 	DECLARE @OrgLocation TINYINT
@@ -1643,7 +1644,7 @@ SET @BreakAtOrgLevel = 60
 		FROM 
 			Organizations (NOLOCK)
 		INNER JOIN OrganizationLevels (NOLOCK) ON OrganizationLevels.OrgSet = Organizations.OrgSet
-			AND OrganizationLevels.OrgLevel &gt;= Organizations.OrgLevel
+			AND OrganizationLevels.OrgLevel >= Organizations.OrgLevel
 		WHERE
 			Organizations.OrgSet = @OrgSet
 			AND Organizations.OrgEntSys = @Organization)
@@ -1656,8 +1657,11 @@ SET @BreakAtOrgLevel = 60
 			OrganizationLevels (NOLOCK)
 		WHERE 
 			OrganizationLevels.OrgSet = @OrgSet
-			AND OrganizationLevels.OrgLevel &gt;= @BreakAtOrgLevel)
+			AND OrganizationLevels.OrgLevel >= @BreakAtOrgLevel)
 /*End OrgBreak Queries - Can be Reused*/
+
+
+
 
 --Create Temp Table for results
 Declare @GLDetail Table(
@@ -1696,7 +1700,8 @@ Declare @GLDetail Table(
     CheckNumber varchar(max),
     DateReceived smalldatetime, 
     AcctDescription varchar(max),
-    ServiceDesc varchar(max))
+    ServiceDesc varchar(max),
+	ServiceSys int NULL)
     
 Insert Into @GLDetail(        
 	OrgBreak,
@@ -1734,31 +1739,32 @@ Insert Into @GLDetail(
     CheckNumber,
     DateReceived,
     AcctDescription,
-    ServiceDesc)
+    ServiceDesc,
+	ServiceSys)
 
 /*Start - Builds out Org Break - Can be reused*/
 SELECT  DISTINCT
 ISNULL(
 		(
 			CASE	
-				WHEN @BreakAtOrgLevelLocation = 1 THEN Organizations.EntSys1
-				WHEN @BreakAtOrgLevelLocation = 2 THEN Organizations.EntSys2
-				WHEN @BreakAtOrgLevelLocation = 3 THEN Organizations.EntSys3
-				WHEN @BreakAtOrgLevelLocation = 4 THEN Organizations.EntSys4
-				WHEN @BreakAtOrgLevelLocation = 5 THEN Organizations.EntSys5
-				WHEN @BreakAtOrgLevelLocation = 6 THEN Organizations.EntSys6
-				WHEN @BreakAtOrgLevelLocation = 7 THEN Organizations.EntSys7
-				WHEN @BreakAtOrgLevelLocation = 8 THEN Organizations.EntSys8
-				WHEN @BreakAtOrgLevelLocation = 9 THEN Organizations.EntSys9
-				WHEN @BreakAtOrgLevelLocation = 10 THEN Organizations.EntSys10
-				WHEN @BreakAtOrgLevelLocation = 11 THEN Organizations.EntSys11
-				WHEN @BreakAtOrgLevelLocation = 12 THEN Organizations.EntSys12
-				WHEN @BreakAtOrgLevelLocation = 13 THEN Organizations.EntSys13
-				WHEN @BreakAtOrgLevelLocation = 14 THEN Organizations.EntSys14
-				WHEN @BreakAtOrgLevelLocation = 15 THEN Organizations.EntSys15
+				WHEN @BreakAtOrgLevelLocation = 1 THEN vwOrganizations.Ent1
+				WHEN @BreakAtOrgLevelLocation = 2 THEN vwOrganizations.Ent2
+				WHEN @BreakAtOrgLevelLocation = 3 THEN vwOrganizations.Ent3
+				WHEN @BreakAtOrgLevelLocation = 4 THEN vwOrganizations.Ent4
+				WHEN @BreakAtOrgLevelLocation = 5 THEN vwOrganizations.Ent5
+				WHEN @BreakAtOrgLevelLocation = 6 THEN vwOrganizations.Ent6
+				WHEN @BreakAtOrgLevelLocation = 7 THEN vwOrganizations.Ent7
+				WHEN @BreakAtOrgLevelLocation = 8 THEN vwOrganizations.Ent8
+				WHEN @BreakAtOrgLevelLocation = 9 THEN vwOrganizations.Ent9
+				WHEN @BreakAtOrgLevelLocation = 10 THEN vwOrganizations.Ent10
+				WHEN @BreakAtOrgLevelLocation = 11 THEN vwOrganizations.Ent11
+				WHEN @BreakAtOrgLevelLocation = 12 THEN vwOrganizations.Ent12
+				WHEN @BreakAtOrgLevelLocation = 13 THEN vwOrganizations.Ent13
+				WHEN @BreakAtOrgLevelLocation = 14 THEN vwOrganizations.Ent14
+				WHEN @BreakAtOrgLevelLocation = 15 THEN vwOrganizations.Ent15
 			END
-				),Organizations.OrgEntSys) AS OrgBreak,
-				Organizations.FullOrgDesc,
+				),vwOrganizations.OrgEntSys) AS OrgBreak,
+				vwOrganizations.FullOrgDesc,
 /*End - Builds out Org Break - Can be reused*/
 
 dbo.TranARDetail.TranSys, 
@@ -1794,93 +1800,57 @@ dbo.Plans.PlanDesc,
 dbo.PaymentChecks.CheckNumber, 
 dbo.PaymentChecks.ReceivedDate, 
 dbo.GLAccts.Description,
-dbo.Services.ServiceDesc
+dbo.Services.ServiceDesc + '(' + CONVERT(varchar(20),dbo.Services.ServiceSys) + ')' As ServiceDesc,
+dbo.Services.ServiceSys
 FROM         dbo.TranARDetail 
-INNER JOIN dbo.Organizations WITH (NOLOCK) ON dbo.TranARDetail.OrgEntSys = dbo.Organizations.OrgEntSys
-INNER JOIN dbo.Episodes WITH (NOLOCK) ON dbo.TranARDetail.EpisodeSys = dbo.Episodes.EpisodeSys 
-INNER JOIN dbo.Entities AS ResEnt WITH (NOLOCK) ON dbo.TranARDetail.ResidentSys = ResEnt.EntitySys
-INNER JOIN dbo.TranService WITH (NOLOCK) ON dbo.TranARDetail.TranSys = dbo.TranService.TranSys 
-INNER JOIN dbo.Services WITH (NOLOCK) ON dbo.TranService.ServiceSys = dbo.Services.ServiceSys 
-LEFT JOIN dbo.PaymentChecks WITH (NOLOCK) ON dbo.TranARDetail.CheckSys = dbo.PaymentChecks.CheckSys 
-LEFT JOIN dbo.GLAccts WITH (NOLOCK) ON dbo.TranARDetail.GLAcctNo = dbo.GLAccts.GLAcctNo 
-LEFT OUTER JOIN dbo.Plans WITH (NOLOCK) ON dbo.TranARDetail.PlanSys = dbo.Plans.PlanSys 
+  INNER JOIN dbo.vwOrganizations WITH (NOLOCK) ON dbo.TranARDetail.OrgEntSys = dbo.vwOrganizations.OrgEntSys
+  INNER JOIN dbo.Episodes WITH (NOLOCK) ON dbo.TranARDetail.EpisodeSys = dbo.Episodes.EpisodeSys 
+  INNER JOIN dbo.Entities AS ResEnt WITH (NOLOCK) ON dbo.TranARDetail.ResidentSys = ResEnt.EntitySys
+  INNER JOIN dbo.TranService WITH (NOLOCK) ON dbo.TranARDetail.TranSys = dbo.TranService.TranSys 
+  INNER JOIN dbo.Services WITH (NOLOCK) ON dbo.TranService.ServiceSys = dbo.Services.ServiceSys 
+  LEFT JOIN dbo.PaymentChecks WITH (NOLOCK) ON dbo.TranARDetail.CheckSys = dbo.PaymentChecks.CheckSys 
+  LEFT JOIN dbo.GLAccts WITH (NOLOCK) ON dbo.TranARDetail.GLAcctNo = dbo.GLAccts.GLAcctNo 
+  LEFT OUTER JOIN dbo.Plans WITH (NOLOCK) ON dbo.TranARDetail.PlanSys = dbo.Plans.PlanSys 
+  
+WHERE  dbo.TranARDetail.TranEndDate >= @TranFromDate 
+	        and dbo.TranARDetail.TranEndDate <= @TransEndDateTime
+          and dbo.TranARDetail.ReverseFlg IS NULL
+          AND TranARDetail.EntryDate BETWEEN @EntryFromDate and @EntryEndDateTime
+          AND (TranARDetail.GLTransDate BETWEEN @GLExportFromDate and @GLExportEndDateTime OR TranARDetail.GLTransDate IS NULL)
+		AND (TranARDetail.GLAcctNo IN (@AccountList) or dbo.TranArDetail.GLAcctNo IS NULL)
+		AND Services.ServiceSys IN (@ServiceList)
+		
 
-WHERE     dbo.TranARDetail.TranEndDate &gt;= @TranFromDate and dbo.TranARDetail.TranEndDate &lt;= @TransEndDateTime and dbo.TranARDetail.ReverseFlg IS NULL
-
-/*Start Org Filter in WHERE CLAUSE- Can be Reused*/
 	AND (
 			(@OrgLocation IS NULL)
-			OR (@OrgLocation=1 AND @Organization = Organizations.EntSys1)
-			OR (@OrgLocation=2 AND @Organization = Organizations.EntSys2)
-			OR (@OrgLocation=3 AND @Organization = Organizations.EntSys3)
-			OR (@OrgLocation=4 AND @Organization = Organizations.EntSys4)
-			OR (@OrgLocation=5 AND @Organization = Organizations.EntSys5)
-			OR (@OrgLocation=6 AND @Organization = Organizations.EntSys6)
-			OR (@OrgLocation=7 AND @Organization = Organizations.EntSys7)
-			OR (@OrgLocation=8 AND @Organization = Organizations.EntSys8)
-			OR (@OrgLocation=9 AND @Organization = Organizations.EntSys9)
-			OR (@OrgLocation=10 AND @Organization = Organizations.EntSys10)
-			OR (@OrgLocation=11 AND @Organization = Organizations.EntSys11)
-			OR (@OrgLocation=12 AND @Organization = Organizations.EntSys12)
-			OR (@OrgLocation=13 AND @Organization = Organizations.EntSys13)
-			OR (@OrgLocation=14 AND @Organization = Organizations.EntSys14)
-			OR (@OrgLocation=15 AND @Organization = Organizations.EntSys15)
+			OR (@OrgLocation=1 AND @Organization = vwOrganizations.Ent1)
+			OR (@OrgLocation=2 AND @Organization = vwOrganizations.Ent2)
+			OR (@OrgLocation=3 AND @Organization = vwOrganizations.Ent3)
+			OR (@OrgLocation=4 AND @Organization = vwOrganizations.Ent4)
+			OR (@OrgLocation=5 AND @Organization = vwOrganizations.Ent5)
+			OR (@OrgLocation=6 AND @Organization = vwOrganizations.Ent6)
+			OR (@OrgLocation=7 AND @Organization = vwOrganizations.Ent7)
+			OR (@OrgLocation=8 AND @Organization = vwOrganizations.Ent8)
+			OR (@OrgLocation=9 AND @Organization = vwOrganizations.Ent9)
+			OR (@OrgLocation=10 AND @Organization = vwOrganizations.Ent10)
+			OR (@OrgLocation=11 AND @Organization = vwOrganizations.Ent11)
+			OR (@OrgLocation=12 AND @Organization = vwOrganizations.Ent12)
+			OR (@OrgLocation=13 AND @Organization = vwOrganizations.Ent13)
+			OR (@OrgLocation=14 AND @Organization = vwOrganizations.Ent14)
+			OR (@OrgLocation=15 AND @Organization = vwOrganizations.Ent15)
 		)
-/*End Org Filter - Can be Reused*/
+         
 
---ORDER BY  Account, CostCenter, TranDate
-
--- FILTER BY PARAMETERS
-IF @GLExportFromDate IS NOT NULL OR @GLExportThruDate IS NOT NULL 
-BEGIN
-  DELETE 
-  FROM @GLDetail
-  WHERE GLTransDate IS NOT NULL and (GLTransDate &gt; @GLExportThruDate OR GLTransDate &lt; @GLExportFromDate)
-END
-
-IF @IncludeUnExported &lt;&gt; 1
+  IF @IncludeUnExported <> 1
 BEGIN
   DELETE
   FROM @GLDetail
   WHERE GLTransDate IS NULL
 END
 
-
-IF @EntryFromDate IS NOT NULL OR @EntryEndDateTime IS NOT NULL 
-BEGIN
-  DELETE 
-  FROM @GLDetail
-  WHERE EntryDate &gt; @EntryEndDateTime OR EntryDate &lt; @EntryFromDate
-END
-/*
-IF @AccountList IS NOT NULL
-BEGIN
-   DELETE
-   FROM @GLDetail
-   WHERE LTRIM(FullAcctNo) NOT IN (@AccountList)
-END
-
-IF @ServiceList IS NOT Null
-BEGIN
-DELETE
-   FROM @GLDetail
-   WHERE LTRIM(FullAcctNo) NOT IN (@ServiceList)
-END
-
-
--- SET MISC CODE VALUES
-UPDATE @GLDetail
-SET ARActionType = (SELECT MiscCodes.CodeDesc
-FROM MiscCodes WHERE ARActionType = MiscCodes.MiscCode and MiscCodeType = 'ACT')
-
-UPDATE @GLDetail
-SET AccountType = (SELECT MiscCodes.CodeDesc
-FROM MiscCodes WHERE AccountType = MiscCodes.MiscCode and MiscCodeType = 'ART')
-
-*/
---MiscCodeType = 'CEN, MST, ADR, PHN'
-
-SELECT * FROM @GLDetail ORDER BY  Account, CostCenter, TranDate</CommandText>
+SELECT * FROM @GLDetail ORDER BY  Account, CostCenter, TranDate
+]]>
+</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
@@ -2163,11 +2133,16 @@ ORDER BY GLAcctNo</CommandText>
     <DataSet Name="ServiceList">
       <Query>
         <DataSourceName>MainConnect</DataSourceName>
-        <CommandText>SELECT DISTINCT ServiceDesc
+        <CommandText>SELECT dbo.Services.ServiceSys, dbo.Services.ServiceDesc + '(' + CONVERT(varchar(20),dbo.Services.ServiceSys) + ')' As ServiceDesc
 FROM dbo.Services
-WHERE getdate() between BegEffDate and EndEffdate or EndEffDate Is Null</CommandText>
+WHERE getdate() between BegEffDate and EndEffdate or EndEffDate Is Null
+Order By ServiceTypeCode, ServiceDesc</CommandText>
       </Query>
       <Fields>
+	  <Field Name="ServiceSys">
+          <DataField>ServiceSys</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
         <Field Name="ServiceDesc">
           <DataField>ServiceDesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
