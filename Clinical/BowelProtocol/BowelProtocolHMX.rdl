@@ -138,6 +138,7 @@
           </QueryParameter>
           <QueryParameter Name="@Organization">
             <Value>=Parameters!Organization.Value</Value>
+			<HMXFilter_1> AND (@HMXOrganizationFilter(vwOrganizations)) </HMXFilter_1>
           </QueryParameter>
           <QueryParameter Name="@BreakAtOrgLevel">
             <Value>=Parameters!BreakAtOrgLevel.Value</Value>
@@ -197,7 +198,7 @@
           AND OrganizationLevels.OrgLevel &gt;= Organizations.OrgLevel
           WHERE
           Organizations.OrgSet = @OrgSet
-          AND Organizations.OrgEntSys = @Organization)
+          AND Organizations.OrgEntSys IN (@Organization))
 
           DECLARE @BreakAtOrgLevelLocation TINYINT
           SELECT @BreakAtOrgLevelLocation = (
@@ -210,29 +211,30 @@
           AND OrganizationLevels.OrgLevel &gt;= @BreakAtOrgLevel)
           /*End OrgBreak Queries - Can be Reused*/
 
-          SELECT  DISTINCT
-          ISNULL(
-          (
-          CASE
-          WHEN @BreakAtOrgLevelLocation = 1 THEN Organizations.EntSys1
-          WHEN @BreakAtOrgLevelLocation = 2 THEN Organizations.EntSys2
-          WHEN @BreakAtOrgLevelLocation = 3 THEN Organizations.EntSys3
-          WHEN @BreakAtOrgLevelLocation = 4 THEN Organizations.EntSys4
-          WHEN @BreakAtOrgLevelLocation = 5 THEN Organizations.EntSys5
-          WHEN @BreakAtOrgLevelLocation = 6 THEN Organizations.EntSys6
-          WHEN @BreakAtOrgLevelLocation = 7 THEN Organizations.EntSys7
-          WHEN @BreakAtOrgLevelLocation = 8 THEN Organizations.EntSys8
-          WHEN @BreakAtOrgLevelLocation = 9 THEN Organizations.EntSys9
-          WHEN @BreakAtOrgLevelLocation = 10 THEN Organizations.EntSys10
-          WHEN @BreakAtOrgLevelLocation = 11 THEN Organizations.EntSys11
-          WHEN @BreakAtOrgLevelLocation = 12 THEN Organizations.EntSys12
-          WHEN @BreakAtOrgLevelLocation = 13 THEN Organizations.EntSys13
-          WHEN @BreakAtOrgLevelLocation = 14 THEN Organizations.EntSys14
-          WHEN @BreakAtOrgLevelLocation = 15 THEN Organizations.EntSys15
-          END
-          ),Organizations.OrgEntSys) AS OrgBreak,
-          Organizations.FullOrgDesc,
-          /*End - Builds out Org Break - Can be reused*/
+          /*Start - Builds out Org Break - Can be reused*/
+		SELECT  DISTINCT
+		ISNULL(
+		(
+			CASE	
+				WHEN @BreakAtOrgLevelLocation = 1 THEN vwOrganizations.Ent1
+				WHEN @BreakAtOrgLevelLocation = 2 THEN vwOrganizations.Ent2
+				WHEN @BreakAtOrgLevelLocation = 3 THEN vwOrganizations.Ent3
+				WHEN @BreakAtOrgLevelLocation = 4 THEN vwOrganizations.Ent4
+				WHEN @BreakAtOrgLevelLocation = 5 THEN vwOrganizations.Ent5
+				WHEN @BreakAtOrgLevelLocation = 6 THEN vwOrganizations.Ent6
+				WHEN @BreakAtOrgLevelLocation = 7 THEN vwOrganizations.Ent7
+				WHEN @BreakAtOrgLevelLocation = 8 THEN vwOrganizations.Ent8
+				WHEN @BreakAtOrgLevelLocation = 9 THEN vwOrganizations.Ent9
+				WHEN @BreakAtOrgLevelLocation = 10 THEN vwOrganizations.Ent10
+				WHEN @BreakAtOrgLevelLocation = 11 THEN vwOrganizations.Ent11
+				WHEN @BreakAtOrgLevelLocation = 12 THEN vwOrganizations.Ent12
+				WHEN @BreakAtOrgLevelLocation = 13 THEN vwOrganizations.Ent13
+				WHEN @BreakAtOrgLevelLocation = 14 THEN vwOrganizations.Ent14
+				WHEN @BreakAtOrgLevelLocation = 15 THEN vwOrganizations.Ent15
+			END
+				),vwOrganizations.OrgEntSys) AS OrgBreak,
+				vwOrganizations.FullOrgDesc,
+			/*End - Builds out Org Break - Can be reused*/
           dbo.episodes.episodesys,
           (SELECT     TOP (1) (CASE WHEN dbo.EpsCensusTrans.TransEndDate IS NULL THEN dbo.Episodes.AdmissionDate ELSE dbo.EpsCensusTrans.TransEndDate END)
           AS InHouseDate
@@ -245,33 +247,15 @@
           dbo.EpsCensusTrans AS EpsCensusTrans_1 with (nolock) ON dbo.Episodes.EpisodeSys = EpsCensusTrans_1.EpisodeSys INNER JOIN
           dbo.EpsOrganizations with (nolock) ON dbo.Episodes.EpisodeSys = dbo.EpsOrganizations.EpisodeSys INNER JOIN
           dbo.Entities AS EO with (nolock) ON dbo.EpsOrganizations.OrgEntSys = EO.EntitySys INNER JOIN
-          dbo.Organizations with (nolock) ON EO.EntitySys = dbo.Organizations.OrgEntSys
+          dbo.vwOrganizations with (nolock) ON EO.EntitySys = dbo.vwOrganizations.OrgEntSys
           WHERE
           (Episodes.DischargeDate IS NULL or
           Episodes.DischargeDate &gt; @RunDateTime) AND
           (dbo.Episodes.AdmissionDate &lt; @RunDateTime) AND
           (EpsCensusTrans_1.TransEndDate IS NULL OR
-          EpsCensusTrans_1.TransEndDate BETWEEN @Level3Start and @RunDateTime) and dbo.Organizations.LowerOrgDesc &lt;&gt; '' and (EPSOrganizations.DateInactive Is NULL OR EpsOrganizations.DateInactive &gt; @RunDateTime)
+          EpsCensusTrans_1.TransEndDate BETWEEN @Level3Start and @RunDateTime) and dbo.vwOrganizations.LowerOrgDesc &lt;&gt; '' and (EPSOrganizations.DateInactive Is NULL OR EpsOrganizations.DateInactive &gt; @RunDateTime)
           /*Start Org Filter in WHERE CLAUSE- Can be Reused*/
-          AND (
-          (@OrgLocation IS NULL)
-          OR (@OrgLocation=1 AND @Organization = Organizations.EntSys1)
-          OR (@OrgLocation=2 AND @Organization = Organizations.EntSys2)
-          OR (@OrgLocation=3 AND @Organization = Organizations.EntSys3)
-          OR (@OrgLocation=4 AND @Organization = Organizations.EntSys4)
-          OR (@OrgLocation=5 AND @Organization = Organizations.EntSys5)
-          OR (@OrgLocation=6 AND @Organization = Organizations.EntSys6)
-          OR (@OrgLocation=7 AND @Organization = Organizations.EntSys7)
-          OR (@OrgLocation=8 AND @Organization = Organizations.EntSys8)
-          OR (@OrgLocation=9 AND @Organization = Organizations.EntSys9)
-          OR (@OrgLocation=10 AND @Organization = Organizations.EntSys10)
-          OR (@OrgLocation=11 AND @Organization = Organizations.EntSys11)
-          OR (@OrgLocation=12 AND @Organization = Organizations.EntSys12)
-          OR (@OrgLocation=13 AND @Organization = Organizations.EntSys13)
-          OR (@OrgLocation=14 AND @Organization = Organizations.EntSys14)
-          OR (@OrgLocation=15 AND @Organization = Organizations.EntSys15)
-          )
-          /*End Org Filter - Can be Reused*/
+         @Organization_1
 
           -- QuestionSys 190187 is Did the resident have a BM and value 1 is a yes
 
