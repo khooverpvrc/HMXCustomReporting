@@ -265,24 +265,24 @@
           dbo.AssessTemplate with (nolock) ON dbo.EpsAssessments.TemplateSys = dbo.AssessTemplate.AssessmentSys INNER JOIN
           dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
           dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
-          dbo.EpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.EpsAssessDtl.EpsAssessSys
-          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.EpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level3Start and @UTCRunDate
+          dbo.vwEpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.vwEpsAssessDtl.EpsAssessSys
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level3Start and @UTCRunDate
           and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level3Count,
           (SELECT COUNT(EpisodeSys)
           FROM         dbo.EpsAssessments INNER JOIN
           dbo.AssessTemplate with (nolock) ON dbo.EpsAssessments.TemplateSys = dbo.AssessTemplate.AssessmentSys INNER JOIN
           dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
           dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
-          dbo.EpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.EpsAssessDtl.EpsAssessSys
-          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.EpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level2Start and @UTCRunDate
+          dbo.vwEpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.vwEpsAssessDtl.EpsAssessSys
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level2Start and @UTCRunDate
           and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level2Count,
           (SELECT COUNT(EpisodeSys)
           FROM         dbo.EpsAssessments INNER JOIN
           dbo.AssessTemplate with (nolock) ON dbo.EpsAssessments.TemplateSys = dbo.AssessTemplate.AssessmentSys INNER JOIN
           dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
           dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
-          dbo.EpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.EpsAssessDtl.EpsAssessSys
-          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.EpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level1Start and @UTCRunDate
+          dbo.vwEpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.vwEpsAssessDtl.EpsAssessSys
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level1Start and @UTCRunDate
           and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level1Count
           FROM #HCInHouseResidents
 
