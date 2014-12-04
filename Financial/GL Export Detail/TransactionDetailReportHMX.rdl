@@ -513,8 +513,8 @@ FROM         dbo.TranARDetail
   INNER JOIN dbo.vwOrganizations WITH (NOLOCK) ON dbo.TranARDetail.OrgEntSys = dbo.vwOrganizations.OrgEntSys
   INNER JOIN dbo.Episodes WITH (NOLOCK) ON dbo.TranARDetail.EpisodeSys = dbo.Episodes.EpisodeSys 
   INNER JOIN dbo.Entities AS ResEnt WITH (NOLOCK) ON dbo.TranARDetail.ResidentSys = ResEnt.EntitySys
-  INNER JOIN dbo.TranService WITH (NOLOCK) ON dbo.TranARDetail.TranSys = dbo.TranService.TranSys 
-  INNER JOIN dbo.Services WITH (NOLOCK) ON dbo.TranService.ServiceSys = dbo.Services.ServiceSys 
+  LEFT JOIN dbo.TranService WITH (NOLOCK) ON dbo.TranARDetail.TranSys = dbo.TranService.TranSys 
+  LEFT JOIN dbo.Services WITH (NOLOCK) ON dbo.TranService.ServiceSys = dbo.Services.ServiceSys 
   LEFT JOIN dbo.PaymentChecks WITH (NOLOCK) ON dbo.TranARDetail.CheckSys = dbo.PaymentChecks.CheckSys 
   LEFT JOIN dbo.GLAccts WITH (NOLOCK) ON dbo.TranARDetail.GLAcctNo = dbo.GLAccts.GLAcctNo 
   LEFT OUTER JOIN dbo.Plans WITH (NOLOCK) ON dbo.TranARDetail.PlanSys = dbo.Plans.PlanSys 
@@ -525,7 +525,7 @@ WHERE  dbo.TranARDetail.TranEndDate >= @TranFromDate
           AND TranARDetail.EntryDate BETWEEN @EntryFromDate and @EntryEndDateTime
           AND (TranARDetail.GLTransDate BETWEEN @GLExportFromDate and @GLExportEndDateTime OR TranARDetail.GLTransDate IS NULL)
 		AND (TranARDetail.GLAcctNo IN (@AccountList) or dbo.TranArDetail.GLAcctNo IS NULL)
-		AND Services.ServiceSys IN (@ServiceList)
+		AND (Services.ServiceSys IN (@ServiceList) or dbo.TranService.ServiceSys IS NULL)
 		
 
 	AND (

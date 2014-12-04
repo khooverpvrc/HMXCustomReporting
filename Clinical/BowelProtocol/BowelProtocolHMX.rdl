@@ -167,7 +167,7 @@
           SET @RunDateTime = @RunDate + @RunTime
 
           -- adjust for UTC from eastern
-          Set @UTCRunDate = DATEADD(HH,4,@RunDateTime)
+          Set @UTCRunDate = DATEADD(HH,5,@RunDateTime)
           --set to UTC version of shift start at 6:00am
           Set @DayShift = CONVERT(smalldatetime,CONVERT(char(2),MONTH(@UTCRunDate)) + '-' + CONVERT(char(2),DAY(@UTCRunDate)) + '-' + CONVERT(char(4),YEAR(@UTCRunDate)) + ' 10:00.00')
           SET @EveShift = DATEADD(HH,8,@DayShift)
@@ -176,10 +176,10 @@
           --set first Level to 8 shifts back
           SET @Level1Start =
           CASE
-          WHEN @UTCRunDate &gt;= @NightShift THEN DATEADD(HH,-64,@NightShift)
-          WHEN @UTCRunDate &gt;= @EveShift THEN DATEADD(HH,-64,@EveShift)
-          WHEN @UTCRunDate &gt;= @DayShift THEN DATEADD(HH, -64, @DayShift)
-          ELSE DATEADD(HH,-96,@NightShift)
+          WHEN @UTCRunDate &gt;= @NightShift THEN DATEADD(HH,-63,@NightShift)
+          WHEN @UTCRunDate &gt;= @EveShift THEN DATEADD(HH,-63,@EveShift)
+          WHEN @UTCRunDate &gt;= @DayShift THEN DATEADD(HH, -63, @DayShift)
+          ELSE DATEADD(HH,-71,@NightShift)
           End
           --set 2nd level to 11 shifts back
           SET @Level2Start = DATEADD(HH,-24,@Level1Start)
