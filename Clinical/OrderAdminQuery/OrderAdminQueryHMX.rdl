@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+
+  <DataSources>
+    <DataSource Name="LTCConnect">
+      <DataSourceReference>LTCConnect</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>0a101074-3d3f-47dc-8f7c-e35b916ad92d</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  
+   <ReportParameters>
+    <ReportParameter Name="OrgSet">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OrgSet</DataSetName>
+          <ValueField>OrgSet</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Org Set</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrgSet</DataSetName>
+          <ValueField>OrgSet</ValueField>
+          <LabelField>OrgSet</LabelField>
+        </DataSetReference>
+      </ValidValues>
+	        <HMXParameter>
+		  <HMXDefaultSession>OrgSet</HMXDefaultSession>
+	  </HMXParameter>
+    </ReportParameter>
+    <ReportParameter Name="Organization">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OrganizationSet</DataSetName>
+          <ValueField>OrgEntSys</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Organization</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrganizationSet</DataSetName>
+          <ValueField>OrgEntSys</ValueField>
+          <LabelField>UpperOrgDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+	  <HMXParameter>
+		  <HMXControlType>OrganizationSelection</HMXControlType>
+		  <HMXZone>1</HMXZone>
+	  </HMXParameter>
+	  <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="BreakAtOrgLevel">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>FacilityLevelSet</DataSetName>
+          <ValueField>OrgLevel</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Break At Org Level</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrganizationLevelSet</DataSetName>
+          <ValueField>OrgLevel</ValueField>
+          <LabelField>LevelDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+	  <HMXParameter>
+			<HMXAssociatedParameter>SortControl</HMXAssociatedParameter>
+			<HMXUserPreferences>Template</HMXUserPreferences>
+		</HMXParameter>
+    </ReportParameter>
+	
+	<ReportParameter Name="SortControl">
+      <DataType>Integer</DataType>
+	  <Prompt>Sort by</Prompt>
+	  <MultiValue>true</MultiValue>
+	  <HMXParameter>
+		<HMXControlType>SortControl</HMXControlType>
+		<HMXControlProperties>
+			<IsRequired>False</IsRequired>
+			<OrgLevelSort>True</OrgLevelSort>
+		</HMXControlProperties>
+		<HMXZone>5</HMXZone>
+		<HMXUserPreferences>Template</HMXUserPreferences>
+		<HMXAssociatedParameter>BreakAtOrgLevel</HMXAssociatedParameter>
+		  <HMXDisplayOrder>1</HMXDisplayOrder>
+	  </HMXParameter>
+	</ReportParameter>
+	
+     <ReportParameter Name="BeginDateAdmin">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateValue(DateAdd("d",-1,now()))</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Begin Date Admin</Prompt>
+	  <HMXParameter>
+		<HMXControlType>DateControl</HMXControlType>
+		<HMXControlProperties>
+			<IsRange>True</IsRange>
+			<ShowLabel>True</ShowLabel>
+			<Label>Order Administration Date Range</Label>
+			<EndDateLabel>To</EndDateLabel>
+			<BeginDateLabel>From</BeginDateLabel>
+			<IsRequired>True</IsRequired>
+		</HMXControlProperties>
+		<HMXAssociatedParameter>EndDateAdmin</HMXAssociatedParameter>
+		<HMXZone>2-1</HMXZone>
+		<HMXDisplayOrder>1</HMXDisplayOrder>
+	  </HMXParameter>
+    </ReportParameter>
+    <ReportParameter Name="EndDateAdmin">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateValue(DateAdd("d",1,now()))</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>End Date Admin</Prompt>
+	  <HMXParameter>
+		<HMXAssociatedParameter>BeginDateAdmin</HMXAssociatedParameter>
+	  </HMXParameter>
+    </ReportParameter>
+	<ReportParameter Name="CareReceiver">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="Resident"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>CareReceiver</Prompt>
+      <Hidden>true</Hidden>
+       <HMXParameter>
+          <HMXDefaultSession>CareReceiver</HMXDefaultSession>
+      </HMXParameter>
+    </ReportParameter>
+    
+    <ReportParameter Name="CareReceiverPlural">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="Residents"</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>CareReceiverPlural</Prompt>
+      <Hidden>true</Hidden>
+      <HMXParameter>
+		<HMXDefaultSession>CareReceiverPlural</HMXDefaultSession> 
+	  </HMXParameter>
+    </ReportParameter>
+	
+    <ReportParameter Name="ResidentID">
+		<DataType>Integer</DataType>
+		<AllowBlank>true</AllowBlank>
+		<Prompt>@CareReceiver Selection</Prompt>
+		<ValidValues>
+			<DataSetReference>
+				<DataSetName>ResidentSet</DataSetName>
+				<ValueField>ResidentSys</ValueField>
+				<LabelField>ResidentName</LabelField>
+			</DataSetReference>
+		</ValidValues>
+		<DefaultValue>0</DefaultValue>
+		<HMXParameter>
+		<HMXControlType>ResidentSelection</HMXControlType>
+		<HMXControlProperties>
+			<ReturnAdmssionInfo>False</ReturnAdmssionInfo>
+			<OrganizationSelectionID>Organization</OrganizationSelectionID>
+			<IsRequired>False</IsRequired>
+			<Width>300</Width>
+		</HMXControlProperties>
+		<HMXUserPreferences>Template</HMXUserPreferences>
+		<HMXZone>3-1</HMXZone>
+	  </HMXParameter>
+		<MultiValue>true</MultiValue>
+    </ReportParameter>
+	  
+ 
+   <ReportParameter Name="OrderName">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>%%</Value>
+        </Values>
+      </DefaultValue>
+		<AllowBlank>true</AllowBlank>
+      <Prompt>Order Name (use %)</Prompt>
+	  <HMXParameter>
+		<HMXControlType>Textbox</HMXControlType>
+		<HMXControlProperties>
+		<LabelPosition>1</LabelPosition>
+			<IsRequired>False</IsRequired>
+			<Width>192</Width>
+		</HMXControlProperties>
+		<HMXZone>3-2</HMXZone>
+		<HMXDisplayOrder>1</HMXDisplayOrder>
+	</HMXParameter>
+    </ReportParameter>
+      <ReportParameter Name="AdministeringUser">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+			<Value>%%</Value>
+        </Values>
+      </DefaultValue>
+		<AllowBlank>true</AllowBlank>
+      <Prompt>Administering User (use %)</Prompt>
+	  	  <HMXParameter>
+		<HMXControlType>Textbox</HMXControlType>
+		<HMXControlProperties>
+		<LabelPosition>1</LabelPosition>
+			<IsRequired>False</IsRequired>
+			<Width>192</Width>
+		</HMXControlProperties>
+		<HMXZone>3-2</HMXZone>
+		<HMXDisplayOrder>1</HMXDisplayOrder>
+	</HMXParameter>
+    </ReportParameter>
+    <ReportParameter Name="IncludeMeds">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>MED</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Include Meds</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>MED</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>NO</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+	  <HMXParameter>
+        <HMXControlType>Radiobutton</HMXControlType>
+        <HMXControlProperties>
+          <ShowLabel>True</ShowLabel>
+          <LabelPosition>1</LabelPosition>
+          <Width>275</Width>
+          <HorizonalList>True</HorizonalList>
+          <IsRequired>True</IsRequired>
+        </HMXControlProperties>
+        <HMXZone>3-5</HMXZone>
+        <HMXDisplayOrder>1</HMXDisplayOrder>
+        <HMXUserPreferences>Template</HMXUserPreferences>
+      </HMXParameter>
+    </ReportParameter>
+    <ReportParameter Name="IncludeTreatments">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>TRE</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Include Treatments</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>TRE</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>NO</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+	  <HMXParameter>
+        <HMXControlType>Radiobutton</HMXControlType>
+        <HMXControlProperties>
+          <ShowLabel>True</ShowLabel>
+          <LabelPosition>1</LabelPosition>
+          <Width>275</Width>
+          <HorizonalList>True</HorizonalList>
+          <IsRequired>False</IsRequired>
+          
+        </HMXControlProperties>
+        <HMXZone>3-5</HMXZone>
+        <HMXDisplayOrder>2</HMXDisplayOrder>
+        <HMXUserPreferences>Template</HMXUserPreferences>
+      </HMXParameter>
+    </ReportParameter>
+    <ReportParameter Name="IncludeLabs">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>LAB</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Include Labs</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>LAB</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>NO</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+	  <HMXParameter>
+        <HMXControlType>Radiobutton</HMXControlType>
+        <HMXControlProperties>
+          <ShowLabel>True</ShowLabel>
+          <LabelPosition>1</LabelPosition>
+          <Width>275</Width>
+          <HorizonalList>True</HorizonalList>
+          <IsRequired>False</IsRequired>
+        </HMXControlProperties>
+        <HMXZone>3-5</HMXZone>
+        <HMXDisplayOrder>3</HMXDisplayOrder>
+        <HMXUserPreferences>Template</HMXUserPreferences>
+      </HMXParameter>
+    </ReportParameter>
+    <ReportParameter Name="IncludeDiagnostics">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>DIA</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Include Diagnostics</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>DIA</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>NO</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+	  <HMXParameter>
+        <HMXControlType>Radiobutton</HMXControlType>
+        <HMXControlProperties>
+          <ShowLabel>True</ShowLabel>
+          <LabelPosition>1</LabelPosition>
+          <Width>275</Width>
+          <HorizonalList>True</HorizonalList>
+          <IsRequired>False</IsRequired>
+          
+        </HMXControlProperties>
+        <HMXZone>3-5</HMXZone>
+        <HMXDisplayOrder>4</HMXDisplayOrder>
+        <HMXUserPreferences>Template</HMXUserPreferences>
+      </HMXParameter>
+    </ReportParameter>
+  </ReportParameters>
+  
+  <DataSets>
+    <DataSet Name="ReportDataSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrgSet">
+            <Value>=Parameters!OrgSet.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Organization">
+            <Value>=Parameters!Organization.Value</Value>
+			<HMXFilter_1> AND (@HMXOrganizationFilter(vwOrganizations)) </HMXFilter_1>
+          </QueryParameter>
+          <QueryParameter Name="@BreakAtOrgLevel">
+            <Value>=Parameters!BreakAtOrgLevel.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@BeginDateAdmin">
+            <Value>=Parameters!BeginDateAdmin.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDateAdmin">
+            <Value>=Parameters!EndDateAdmin.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ResidentID">
+            <Value>=Parameters!ResidentID.Value</Value>
+			<HMXFilter_1> AND (0 IN (@ResidentID) OR vwResPhysOrderAdmins.ResidentID IN (@ResidentID)) </HMXFilter_1>
+          </QueryParameter>
+          <QueryParameter Name="@OrderName">
+            <Value>=Parameters!OrderName.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@AdministeringUser">
+            <Value>=Parameters!AdministeringUser.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeMeds">
+            <Value>=Parameters!IncludeMeds.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeTreatments">
+            <Value>=Parameters!IncludeTreatments.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeLabs">
+            <Value>=Parameters!IncludeLabs.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeDiagnostics">
+            <Value>=Parameters!IncludeDiagnostics.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>
+			/*DECLARE @Organization INT, --required
+			@BreakAtOrgLevel INT, --required
+			@BeginDateAdmin DATETIME, --required
+			@EndDateAdmin DATETIME, --required
+			@ResidentID varchar(10),
+			@OrderName varchar(max),
+			@AdministeringUser varchar(255),
+			@IncludeMeds varchar(5),
+			@IncludeTreatments varchar(5),
+			@IncludeLabs varchar(5),
+			@IncludeDiagnostics varchar(5),
+			@OrgSet INT
+
+			-- Setting Defaults for input parameters
+			SET @Organization = 1
+			SET @BreakAtOrgLevel = 30
+			SET @BeginDateAdmin = DATEADD(dd,-14,getdate())
+			SET @EndDateAdmin = GETDATE()
+			SET @ResidentID = '%%'
+			SET @OrderName = '%%'
+			SET @AdministeringUser = 'akh%'
+			SET @IncludeDiagnostics = 'DIA'
+			SET @IncludeLabs = 'LAB'
+			SET @IncludeMeds = 'MED'
+			SET @IncludeTreatments = 'TRE'
+			Set @OrgSet = 1
+			*/
+
+
+			/*Start OrgBreak Queries - Can be Reused - Builds variable for Org Level Selection Control*/
+			DECLARE @OrgLocation TINYINT
+			SELECT @OrgLocation = (
+			SELECT
+			COUNT(*)
+			FROM
+			Organizations (NOLOCK)
+			INNER JOIN OrganizationLevels (NOLOCK) ON OrganizationLevels.OrgSet = Organizations.OrgSet
+			AND OrganizationLevels.OrgLevel &gt;= Organizations.OrgLevel
+		WHERE
+			Organizations.OrgSet = @OrgSet
+			AND Organizations.OrgEntSys IN (@Organization))
+
+	DECLARE @BreakAtOrgLevelLocation TINYINT
+	SELECT @BreakAtOrgLevelLocation = (
+		SELECT 
+			COUNT(*)
+		FROM 
+			OrganizationLevels (NOLOCK)
+		WHERE 
+			OrganizationLevels.OrgSet = @OrgSet
+			AND OrganizationLevels.OrgLevel &gt;= @BreakAtOrgLevel)
+			/*End OrgBreak Queries - Can be Reused*/
+
+			/*Start - Builds out Org Break - Can be reused*/
+			SELECT  DISTINCT
+ISNULL(
+		(
+			CASE	
+				WHEN @BreakAtOrgLevelLocation = 1 THEN vwOrganizations.Ent1
+				WHEN @BreakAtOrgLevelLocation = 2 THEN vwOrganizations.Ent2
+				WHEN @BreakAtOrgLevelLocation = 3 THEN vwOrganizations.Ent3
+				WHEN @BreakAtOrgLevelLocation = 4 THEN vwOrganizations.Ent4
+				WHEN @BreakAtOrgLevelLocation = 5 THEN vwOrganizations.Ent5
+				WHEN @BreakAtOrgLevelLocation = 6 THEN vwOrganizations.Ent6
+				WHEN @BreakAtOrgLevelLocation = 7 THEN vwOrganizations.Ent7
+				WHEN @BreakAtOrgLevelLocation = 8 THEN vwOrganizations.Ent8
+				WHEN @BreakAtOrgLevelLocation = 9 THEN vwOrganizations.Ent9
+				WHEN @BreakAtOrgLevelLocation = 10 THEN vwOrganizations.Ent10
+				WHEN @BreakAtOrgLevelLocation = 11 THEN vwOrganizations.Ent11
+				WHEN @BreakAtOrgLevelLocation = 12 THEN vwOrganizations.Ent12
+				WHEN @BreakAtOrgLevelLocation = 13 THEN vwOrganizations.Ent13
+				WHEN @BreakAtOrgLevelLocation = 14 THEN vwOrganizations.Ent14
+				WHEN @BreakAtOrgLevelLocation = 15 THEN vwOrganizations.Ent15
+			END
+				),vwOrganizations.OrgEntSys) AS OrgBreak,
+				vwOrganizations.FullOrgDesc,
+			Entities.DisplayName,
+			Entities.InternalID,
+			vwResPhysOrderAdmins.[ResOrderSys]
+			,[vwResPhysOrderAdmins].[OrderType]
+			,[OrderTimesSeq]
+			,[DateTimeAdmin]
+			,[CompletedDateTime]
+			,vwResPhysOrderAdmins.[UserSysCreated]
+			,vwResPhysOrderAdmins.[DateCreated]
+			,[ShiftSys]
+			,[RecurSys]
+			,vwResPhysOrderAdmins.[AdminSys]
+			,[AdminStatusCode]
+			,[AdminSchedule]
+			,[NoAdminMCSys]
+			,vwResPhysOrderAdmins.[SignedUserID]
+			,[ResidentID]
+			,vwResPhysOrderAdmins.OrderText
+			,[OrderQty]
+			,[OrderRoute]
+			,[OrderFrequency]
+			,[OrderBeginDate]
+			,[OrderEndDate]
+			,[OrderStatusCode]
+			,[OrderNotes]
+			,vwResPhysOrderAdmins.[DateSigned]
+			,[UserSysUpdated]
+			,vwResPhysOrderAdmins.[InvalidElectSignFlg]
+			,vwResPhysOrderAdmins.[SignedUserSys],
+			(Select STUFF((Select '; ' + Note from dbo.vwResPhysOrderAdminsNotes where vwResPhysOrderAdmins.AdminSys = vwResPhysOrderAdminsNotes.AdminSys FOR XML PATH('')),1,1,'')) as Note
+
+			FROM [vwResPhysOrderAdmins]
+			Inner join Entities WITH (nolock)on Entities.EntitySys = vwResPhysOrderAdmins.ResidentID
+			Inner Join ResPhysOrders WITH (nolock)on ResPhysOrders.ResOrderSys = vwResPhysOrderAdmins.ResOrderSys
+			Inner Join dbo.EpsOrganizations AS EO WITH (nolock) ON EO.EpisodeSys = ResPhysOrders.EpisodeSys
+			AND EO.OrgSeq =
+			(SELECT     MAX(OrgSeq) AS Expr1
+			FROM          dbo.EpsOrganizations AS EO2
+			WHERE      (EpisodeSys = EO.EpisodeSys))
+			INNER JOIN
+			vwOrganizations WITH (nolock) ON vwOrganizations.OrgEntSys = EO.OrgEntSys
+			where DateTimeAdmin BETWEEN @BeginDateAdmin and @EndDateAdmin
+			and UPPER(vwResPhysOrderAdmins.OrderText) LIKE UPPER(@OrderName)
+			and UPPER(vwResPhysOrderAdmins.SignedUserID) LIKE UPPER(@AdministeringUser)
+			and ([vwResPhysOrderAdmins].OrderType = COALESCE(@IncludeMeds,'')
+			OR [vwResPhysOrderAdmins].OrderType = @IncludeTreatments
+			OR [vwResPhysOrderAdmins].OrderType = @IncludeLabs
+			OR [vwResPhysOrderAdmins].OrderType = @IncludeDiagnostics)
+			@Organization_1
+			@ResidentID_1
+			order by DateTimeAdmin,InternalID  desc</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="OrgBreak">
+          <DataField>OrgBreak</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FullOrgDesc">
+          <DataField>FullOrgDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DisplayName">
+          <DataField>DisplayName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InternalID">
+          <DataField>InternalID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ResOrderSys">
+          <DataField>ResOrderSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OrderType">
+          <DataField>OrderType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderTimesSeq">
+          <DataField>OrderTimesSeq</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DateTimeAdmin">
+          <DataField>DateTimeAdmin</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="CompletedDateTime">
+          <DataField>CompletedDateTime</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UserSysCreated">
+          <DataField>UserSysCreated</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DateCreated">
+          <DataField>DateCreated</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ShiftSys">
+          <DataField>ShiftSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="RecurSys">
+          <DataField>RecurSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AdminSys">
+          <DataField>AdminSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AdminStatusCode">
+          <DataField>AdminStatusCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AdminSchedule">
+          <DataField>AdminSchedule</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NoAdminMCSys">
+          <DataField>NoAdminMCSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SignedUserID">
+          <DataField>SignedUserID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ResidentID">
+          <DataField>ResidentID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderText">
+          <DataField>OrderText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderQty">
+          <DataField>OrderQty</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderRoute">
+          <DataField>OrderRoute</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderFrequency">
+          <DataField>OrderFrequency</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderBeginDate">
+          <DataField>OrderBeginDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OrderEndDate">
+          <DataField>OrderEndDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OrderStatusCode">
+          <DataField>OrderStatusCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderNotes">
+          <DataField>OrderNotes</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DateSigned">
+          <DataField>DateSigned</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UserSysUpdated">
+          <DataField>UserSysUpdated</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="InvalidElectSignFlg">
+          <DataField>InvalidElectSignFlg</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SignedUserSys">
+          <DataField>SignedUserSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Note">
+          <DataField>Note</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrgSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <CommandText>Select OrgSet 
+From OrganizationSets with (nolock) 
+where OrgSetStatus = 'CR'
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgSet">
+          <DataField>OrgSet</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <CommandText>SELECT
+	OrgEntSys,
+	UpperOrgDesc
+FROM
+	vwOrganizations WITH (NOLOCK)
+WHERE	
+	OrgSet =   (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+		)
+	AND OrgLevel &lt;= (
+		SELECT ol.OrgLevel
+		FROM OrganizationLevels AS ol WITH (NOLOCK)
+		WHERE ol.OrgSet =  (
+				Select OrgSet 
+				From OrganizationSets with (nolock) 
+				where OrgSetStatus = 'CR' 
+			)	
+		AND ol.LevelType = 'FA'
+		)	
+ORDER BY
+                UpperOrgDesc, OrgEntSys
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgEntSys">
+          <DataField>OrgEntSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UpperOrgDesc">
+          <DataField>UpperOrgDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationLevelSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <CommandText>SELECT OrgLevel,LevelDesc 
+FROM OrganizationLevels  WITH (NOLOCK) 
+Where OrgSet = (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+	)
+             And OrgLevel &lt;= (Select OrgLevel From OrganizationLevels WITH (NOLOCK) where LevelType = 'FA' 
+				and OrgSet = (
+						Select OrgSet 
+						From OrganizationSets with (nolock) 
+						where OrgSetStatus = 'CR')
+					)
+ORDER BY OrgLevel
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FacilityLevelSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <CommandText>SELECT ol.OrgLevel, ol.LevelAbbrev, ol.LevelDesc 
+FROM dbo.OrganizationLevels AS ol WITH (NOLOCK) 
+WHERE ol.OrgSet = (
+			Select OrgSet 
+			From OrganizationSets with (nolock) 
+			where OrgSetStatus = 'CR'
+		   ) 
+AND ol.LevelType = 'FA';
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelAbbrev">
+          <DataField>LevelAbbrev</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ResidentSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrgSet">
+            <Value>=Parameters!OrgSet.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Organization">
+            <Value>=Parameters!Organization.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>
+			DECLARE @OrgLocation int
+			SELECT @OrgLocation = (
+			SELECT COUNT(*) FROM vwOrganizations vwo WITH (NOLOCK)
+			INNER JOIN OrganizationLevels WITH (NOLOCK) ON OrganizationLevels.OrgSet = vwo.OrgSet
+			AND OrganizationLevels.OrgLevel >= vwo.OrgLevel
+			WHERE vwo.OrgSet = @OrgSet
+			)
+
+			SELECT DISTINCT
+			r.DisplayName + ' (' + r.InternalID + ')' AS ResidentName,
+			e.EntitySys AS ResidentSys
+			FROM
+			Entities r WITH (NOLOCK)
+			INNER JOIN Episodes e WITH (NOLOCK) ON e.ResidentSys = r.EntitySys -- limit to residents
+			LEFT JOIN EpsOrganizations epso WITH (NOLOCK) ON epso.EpisodeSys = e.EpisodeSys
+			AND epso.OrgSeq = (SELECT MAX(OrgSeq) FROM EpsOrganizations eom WITH (NOLOCK) WHERE eom.EpisodeSys = e.EpisodeSys
+			AND eom.OrgSet = epso.OrgSet)
+			AND epso.OrgSet = @OrgSet
+			LEFT JOIN EntOrganizations ento WITH (NOLOCK) ON ento.EntitySys = e.EpisodeSys
+			AND ento.OrgSeq = (SELECT MAX(OrgSeq) FROM EntOrganizations eom WITH (NOLOCK) WHERE eom.EntitySys = e.ResidentSys
+			AND eom.OrgSet = ento.OrgSet)
+			AND ento.OrgSet = @OrgSet
+			INNER JOIN vwOrganizations vwo WITH (NOLOCK) ON vwo.OrgEntSys = ISNULL(epso.OrgEntSys,ento.OrgEntSys)
+			AND vwo.OrgSet = @OrgSet
+
+
+			UNION
+			SELECT  ' All' AS ResidentName, 0 AS ResidentSys
+			ORDER BY ResidentName, ResidentSys
+		</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="ResidentName">
+          <DataField>ResidentName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ResidentSys">
+          <DataField>ResidentSys</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  
+ 
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>cbb7a333-211b-4e91-afd2-5e811b50c1d0</rd:ReportID>
+</Report>

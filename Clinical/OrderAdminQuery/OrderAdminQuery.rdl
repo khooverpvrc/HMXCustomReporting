@@ -1,0 +1,1648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="table1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.59375in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.55208in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.875in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.79167in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.72917in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.77083in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.125in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.21in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox105">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Resident</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox105</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Room</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox107">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Order</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox107</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox9">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Date Time Admin</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox9</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox17">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Schedule Period</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox17</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox19">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Date Signed</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox19</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox29">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Signed User</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox29</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox33">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Administration Note</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox33</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.21in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox106">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DisplayName.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> - (</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!InternalID.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>)</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox106</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="FullOrgDesc">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Right(Fields!FullOrgDesc.Value,5)</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>FullOrgDesc</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox108">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!OrderText.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!OrderQty.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!OrderRoute.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!OrderFrequency.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!OrderNotes.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>(</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!OrderBeginDate.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value> - </Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!OrderEndDate.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>)</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox108</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DateTimeAdmin">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DateTimeAdmin.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DateTimeAdmin</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="AdminSchedule">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!AdminSchedule.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>AdminSchedule</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="SignedUserID">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DateSigned.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>SignedUserID</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DateSigned">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!SignedUserID.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DateSigned</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Note">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Note.Value</Value>
+                              <MarkupType>HTML</MarkupType>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Note</rd:DefaultName>
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <TablixHeader>
+                <Size>0.03125in</Size>
+                <CellContents>
+                  <Textbox Name="Textbox68">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontWeight>Bold</FontWeight>
+                              <TextDecoration>Underline</TextDecoration>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Left</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox68</rd:DefaultName>
+                    <Style>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="OrgBreak">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!OrgBreak.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!OrgBreak.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>0.03125in</Size>
+                <CellContents>
+                  <Textbox Name="Textbox70">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value />
+                            <Style>
+                              <FontSize>9pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox70</rd:DefaultName>
+                    <Style>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Group1">
+                    <GroupExpressions>
+                      <GroupExpression>=LEFT(RIGHT(Fields!FullOrgDesc.Value,5),1)</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=LEFT(RIGHT(Fields!FullOrgDesc.Value,5),1)</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="table1_Details_Group">
+                        <DataElementName>Detail</DataElementName>
+                      </Group>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                      <DataElementName>Detail_Collection</DataElementName>
+                      <DataElementOutput>Output</DataElementOutput>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>ReportDataSet</DataSetName>
+        <Top>0.06944in</Top>
+        <Height>0.42in</Height>
+        <Width>10.46875in</Width>
+        <Style />
+      </Tablix>
+    </ReportItems>
+    <Height>0.5675in</Height>
+    <Style />
+  </Body>
+  <Width>10.46875in</Width>
+  <Page>
+    <PageHeader>
+      <Height>0.88889in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox109">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Order Administration Query</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Admin Date Range: </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!BeginDateAdmin.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value> - </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!EndDateAdmin.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Order Name Filter: </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!OrderName.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Signing User Filter: </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!AdministeringUser.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Include: </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!IncludeMeds.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value xml:space="preserve"> </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!IncludeTreatments.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value xml:space="preserve"> </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!IncludeLabs.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value xml:space="preserve"> </Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!IncludeDiagnostics.Value</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox109</rd:DefaultName>
+          <Height>0.88889in</Height>
+          <Width>10.46875in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageHeight>8.5in</PageHeight>
+    <PageWidth>11in</PageWidth>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.25in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.25in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="LTCConnect">
+      <DataSourceReference>LTCConnect</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>0a101074-3d3f-47dc-8f7c-e35b916ad92d</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ReportDataSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrgSet">
+            <Value>=Parameters!OrgSet.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Organization">
+            <Value>=Parameters!Organization.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@BreakAtOrgLevel">
+            <Value>=Parameters!BreakAtOrgLevel.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@BeginDateAdmin">
+            <Value>=Parameters!BeginDateAdmin.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDateAdmin">
+            <Value>=Parameters!EndDateAdmin.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ResidentID">
+            <Value>=Parameters!ResidentID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@OrderName">
+            <Value>=Parameters!OrderName.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@AdministeringUser">
+            <Value>=Parameters!AdministeringUser.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeMeds">
+            <Value>=Parameters!IncludeMeds.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeTreatments">
+            <Value>=Parameters!IncludeTreatments.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeLabs">
+            <Value>=Parameters!IncludeLabs.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@IncludeDiagnostics">
+            <Value>=Parameters!IncludeDiagnostics.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>
+			/*DECLARE @Organization INT, --required
+			@BreakAtOrgLevel INT, --required
+			@BeginDateAdmin DATETIME, --required
+			@EndDateAdmin DATETIME, --required
+			@ResidentID varchar(10),
+			@OrderName varchar(max),
+			@AdministeringUser varchar(255),
+			@IncludeMeds varchar(5),
+			@IncludeTreatments varchar(5),
+			@IncludeLabs varchar(5),
+			@IncludeDiagnostics varchar(5),
+			@OrgSet INT
+
+			-- Setting Defaults for input parameters
+			SET @Organization = 1
+			SET @BreakAtOrgLevel = 30
+			SET @BeginDateAdmin = DATEADD(dd,-14,getdate())
+			SET @EndDateAdmin = GETDATE()
+			SET @ResidentID = '%%'
+			SET @OrderName = '%%'
+			SET @AdministeringUser = 'akh%'
+			SET @IncludeDiagnostics = 'DIA'
+			SET @IncludeLabs = 'LAB'
+			SET @IncludeMeds = 'MED'
+			SET @IncludeTreatments = 'TRE'
+			Set @OrgSet = 1
+			*/
+
+		
+
+
+
+			/*Start OrgBreak Queries - Can be Reused - Builds variable for Org Level Selection Control*/
+			DECLARE @OrgLocation TINYINT
+			SELECT @OrgLocation = (
+			SELECT
+			COUNT(*)
+			FROM
+			Organizations (NOLOCK)
+			INNER JOIN OrganizationLevels (NOLOCK) ON OrganizationLevels.OrgSet = Organizations.OrgSet
+			AND OrganizationLevels.OrgLevel &gt;= Organizations.OrgLevel
+		WHERE
+			Organizations.OrgSet = @OrgSet
+			AND Organizations.OrgEntSys = @Organization)
+
+	DECLARE @BreakAtOrgLevelLocation TINYINT
+	SELECT @BreakAtOrgLevelLocation = (
+		SELECT 
+			COUNT(*)
+		FROM 
+			OrganizationLevels (NOLOCK)
+		WHERE 
+			OrganizationLevels.OrgSet = @OrgSet
+			AND OrganizationLevels.OrgLevel &gt;= @BreakAtOrgLevel)
+			/*End OrgBreak Queries - Can be Reused*/
+
+			/*Start - Builds out Org Break - Can be reused*/
+			SELECT  DISTINCT
+			ISNULL(
+			(
+			CASE
+			WHEN @BreakAtOrgLevelLocation = 1 THEN Organizations.EntSys1
+			WHEN @BreakAtOrgLevelLocation = 2 THEN Organizations.EntSys2
+			WHEN @BreakAtOrgLevelLocation = 3 THEN Organizations.EntSys3
+			WHEN @BreakAtOrgLevelLocation = 4 THEN Organizations.EntSys4
+			WHEN @BreakAtOrgLevelLocation = 5 THEN Organizations.EntSys5
+			WHEN @BreakAtOrgLevelLocation = 6 THEN Organizations.EntSys6
+			WHEN @BreakAtOrgLevelLocation = 7 THEN Organizations.EntSys7
+			WHEN @BreakAtOrgLevelLocation = 8 THEN Organizations.EntSys8
+			WHEN @BreakAtOrgLevelLocation = 9 THEN Organizations.EntSys9
+			WHEN @BreakAtOrgLevelLocation = 10 THEN Organizations.EntSys10
+			WHEN @BreakAtOrgLevelLocation = 11 THEN Organizations.EntSys11
+			WHEN @BreakAtOrgLevelLocation = 12 THEN Organizations.EntSys12
+			WHEN @BreakAtOrgLevelLocation = 13 THEN Organizations.EntSys13
+			WHEN @BreakAtOrgLevelLocation = 14 THEN Organizations.EntSys14
+			WHEN @BreakAtOrgLevelLocation = 15 THEN Organizations.EntSys15
+			END
+			),Organizations.OrgEntSys) AS OrgBreak,
+			Organizations.FullOrgDesc,
+			Entities.DisplayName,
+			Entities.InternalID,
+			vwResPhysOrderAdmins.[ResOrderSys]
+			,[vwResPhysOrderAdmins].[OrderType]
+			,[OrderTimesSeq]
+			,[DateTimeAdmin]
+			,[CompletedDateTime]
+			,vwResPhysOrderAdmins.[UserSysCreated]
+			,vwResPhysOrderAdmins.[DateCreated]
+			,[ShiftSys]
+			,[RecurSys]
+			,vwResPhysOrderAdmins.[AdminSys]
+			,[AdminStatusCode]
+			,[AdminSchedule]
+			,[NoAdminMCSys]
+			,vwResPhysOrderAdmins.[SignedUserID]
+			,[ResidentID]
+			,vwResPhysOrderAdmins.OrderText
+			,[OrderQty]
+			,[OrderRoute]
+			,[OrderFrequency]
+			,[OrderBeginDate]
+			,[OrderEndDate]
+			,[OrderStatusCode]
+			,[OrderNotes]
+			,vwResPhysOrderAdmins.[DateSigned]
+			,[UserSysUpdated]
+			,vwResPhysOrderAdmins.[InvalidElectSignFlg]
+			,vwResPhysOrderAdmins.[SignedUserSys],
+			(Select STUFF((Select '; ' + Note from dbo.vwResPhysOrderAdminsNotes where vwResPhysOrderAdmins.AdminSys = vwResPhysOrderAdminsNotes.AdminSys FOR XML PATH('')),1,1,'')) as Note
+
+			FROM [HMXakh_Reporting].[dbo].[vwResPhysOrderAdmins]
+			Inner join Entities WITH (nolock)on Entities.EntitySys = vwResPhysOrderAdmins.ResidentID
+			Inner Join ResPhysOrders WITH (nolock)on ResPhysOrders.ResOrderSys = vwResPhysOrderAdmins.ResOrderSys
+			Inner Join dbo.EpsOrganizations AS EO WITH (nolock) ON EO.EpisodeSys = ResPhysOrders.EpisodeSys
+			AND EO.OrgSeq =
+			(SELECT     MAX(OrgSeq) AS Expr1
+			FROM          dbo.EpsOrganizations AS EO2
+			WHERE      (EpisodeSys = EO.EpisodeSys))
+			INNER JOIN
+			dbo.Organizations WITH (nolock) ON Organizations.OrgEntSys = EO.OrgEntSys
+			where DateTimeAdmin BETWEEN @BeginDateAdmin and @EndDateAdmin
+			and (0 IN (@ResidentID) OR Entities.InternalID IN (@ResidentID) )
+			and UPPER(vwResPhysOrderAdmins.OrderText) LIKE ('%' + UPPER(@OrderName) + '%')
+			and UPPER(vwResPhysOrderAdmins.SignedUserID) LIKE ('%' + UPPER(@AdministeringUser) + '%')
+			and ([vwResPhysOrderAdmins].OrderType = @IncludeMeds
+			OR [vwResPhysOrderAdmins].OrderType = @IncludeTreatments
+			OR [vwResPhysOrderAdmins].OrderType = @IncludeLabs
+			OR [vwResPhysOrderAdmins].OrderType = @IncludeDiagnostics)
+			order by DateTimeAdmin,InternalID  desc</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="OrgBreak">
+          <DataField>OrgBreak</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FullOrgDesc">
+          <DataField>FullOrgDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DisplayName">
+          <DataField>DisplayName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InternalID">
+          <DataField>InternalID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ResOrderSys">
+          <DataField>ResOrderSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OrderType">
+          <DataField>OrderType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderTimesSeq">
+          <DataField>OrderTimesSeq</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DateTimeAdmin">
+          <DataField>DateTimeAdmin</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="CompletedDateTime">
+          <DataField>CompletedDateTime</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UserSysCreated">
+          <DataField>UserSysCreated</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DateCreated">
+          <DataField>DateCreated</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ShiftSys">
+          <DataField>ShiftSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="RecurSys">
+          <DataField>RecurSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AdminSys">
+          <DataField>AdminSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AdminStatusCode">
+          <DataField>AdminStatusCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AdminSchedule">
+          <DataField>AdminSchedule</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NoAdminMCSys">
+          <DataField>NoAdminMCSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SignedUserID">
+          <DataField>SignedUserID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ResidentID">
+          <DataField>ResidentID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderText">
+          <DataField>OrderText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderQty">
+          <DataField>OrderQty</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderRoute">
+          <DataField>OrderRoute</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderFrequency">
+          <DataField>OrderFrequency</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderBeginDate">
+          <DataField>OrderBeginDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OrderEndDate">
+          <DataField>OrderEndDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OrderStatusCode">
+          <DataField>OrderStatusCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderNotes">
+          <DataField>OrderNotes</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DateSigned">
+          <DataField>DateSigned</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="UserSysUpdated">
+          <DataField>UserSysUpdated</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="InvalidElectSignFlg">
+          <DataField>InvalidElectSignFlg</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="SignedUserSys">
+          <DataField>SignedUserSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Note">
+          <DataField>Note</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrgSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <CommandText>Select OrgSet 
+From OrganizationSets with (nolock) 
+where OrgSetStatus = 'CR'
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgSet">
+          <DataField>OrgSet</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <CommandText>SELECT
+	OrgEntSys,
+	UpperOrgDesc
+FROM
+	vwOrganizations WITH (NOLOCK)
+WHERE	
+	OrgSet =   (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+		)
+	AND OrgLevel &lt;= (
+		SELECT ol.OrgLevel
+		FROM OrganizationLevels AS ol WITH (NOLOCK)
+		WHERE ol.OrgSet =  (
+				Select OrgSet 
+				From OrganizationSets with (nolock) 
+				where OrgSetStatus = 'CR' 
+			)	
+		AND ol.LevelType = 'FA'
+		)	
+ORDER BY
+                UpperOrgDesc, OrgEntSys
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgEntSys">
+          <DataField>OrgEntSys</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UpperOrgDesc">
+          <DataField>UpperOrgDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OrganizationLevelSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <CommandText>SELECT OrgLevel,LevelDesc 
+FROM OrganizationLevels  WITH (NOLOCK) 
+Where OrgSet = (
+		Select OrgSet 
+		From OrganizationSets with (nolock) 
+		where OrgSetStatus = 'CR' 
+	)
+             And OrgLevel &lt;= (Select OrgLevel From OrganizationLevels WITH (NOLOCK) where LevelType = 'FA' 
+				and OrgSet = (
+						Select OrgSet 
+						From OrganizationSets with (nolock) 
+						where OrgSetStatus = 'CR')
+					)
+ORDER BY OrgLevel
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="FacilityLevelSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <CommandText>SELECT ol.OrgLevel, ol.LevelAbbrev, ol.LevelDesc 
+FROM dbo.OrganizationLevels AS ol WITH (NOLOCK) 
+WHERE ol.OrgSet = (
+			Select OrgSet 
+			From OrganizationSets with (nolock) 
+			where OrgSetStatus = 'CR'
+		   ) 
+AND ol.LevelType = 'FA';
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="OrgLevel">
+          <DataField>OrgLevel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="LevelAbbrev">
+          <DataField>LevelAbbrev</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LevelDesc">
+          <DataField>LevelDesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ResidentSet">
+      <Query>
+        <DataSourceName>LTCConnect</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrgSet">
+            <Value>=Parameters!OrgSet.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Organization">
+            <Value>=Parameters!Organization.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>
+			DECLARE @OrgLocation int
+			SELECT @OrgLocation = (
+			SELECT COUNT(*) FROM vwOrganizations vwo WITH (NOLOCK)
+			INNER JOIN OrganizationLevels WITH (NOLOCK) ON OrganizationLevels.OrgSet = vwo.OrgSet
+			AND OrganizationLevels.OrgLevel >= vwo.OrgLevel
+			WHERE vwo.OrgSet = @OrgSet
+			)
+
+			SELECT DISTINCT
+			r.DisplayName + ' (' + r.InternalID + ')' AS ResidentName,
+			r.InternalID AS ResidentSys
+			FROM
+			Entities r WITH (NOLOCK)
+			INNER JOIN Episodes e WITH (NOLOCK) ON e.ResidentSys = r.EntitySys -- limit to residents
+			LEFT JOIN EpsOrganizations epso WITH (NOLOCK) ON epso.EpisodeSys = e.EpisodeSys
+			AND epso.OrgSeq = (SELECT MAX(OrgSeq) FROM EpsOrganizations eom WITH (NOLOCK) WHERE eom.EpisodeSys = e.EpisodeSys
+			AND eom.OrgSet = epso.OrgSet)
+			AND epso.OrgSet = @OrgSet
+			LEFT JOIN EntOrganizations ento WITH (NOLOCK) ON ento.EntitySys = e.EpisodeSys
+			AND ento.OrgSeq = (SELECT MAX(OrgSeq) FROM EntOrganizations eom WITH (NOLOCK) WHERE eom.EntitySys = e.ResidentSys
+			AND eom.OrgSet = ento.OrgSet)
+			AND ento.OrgSet = @OrgSet
+			INNER JOIN vwOrganizations vwo WITH (NOLOCK) ON vwo.OrgEntSys = ISNULL(epso.OrgEntSys,ento.OrgEntSys)
+			AND vwo.OrgSet = @OrgSet
+
+
+			UNION
+			SELECT  ' All' AS ResidentName, '0' AS ResidentSys
+			ORDER BY ResidentName, ResidentSys
+		</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="ResidentName">
+          <DataField>ResidentName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ResidentSys">
+          <DataField>ResidentSys</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="OrgSet">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OrgSet</DataSetName>
+          <ValueField>OrgSet</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Org Set</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrgSet</DataSetName>
+          <ValueField>OrgSet</ValueField>
+          <LabelField>OrgSet</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Organization">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>OrganizationSet</DataSetName>
+          <ValueField>OrgEntSys</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Organization</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrganizationSet</DataSetName>
+          <ValueField>OrgEntSys</ValueField>
+          <LabelField>UpperOrgDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="BreakAtOrgLevel">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>FacilityLevelSet</DataSetName>
+          <ValueField>OrgLevel</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Break At Org Level</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>OrganizationLevelSet</DataSetName>
+          <ValueField>OrgLevel</ValueField>
+          <LabelField>LevelDesc</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="BeginDateAdmin">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateAdd("d",-1,Now())</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Begin Date Admin</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDateAdmin">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=DateAdd("d",1,Now())</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>End Date Admin</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ResidentID">
+		<DataType>String</DataType>
+		<AllowBlank>true</AllowBlank>
+		<Prompt>@CareReceiver Selection</Prompt>
+		<DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+		<ValidValues>
+			<DataSetReference>
+				<DataSetName>ResidentSet</DataSetName>
+				<ValueField>ResidentSys</ValueField>
+				<LabelField>ResidentName</LabelField>
+			</DataSetReference>
+		</ValidValues>
+		<MultiValue>true</MultiValue>
+    </ReportParameter>
+	  
+ 
+    <ReportParameter Name="OrderName">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value></Value>
+        </Values>
+      </DefaultValue>
+		<AllowBlank>true</AllowBlank>
+      <Prompt>Order Name</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="AdministeringUser">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+			<Value></Value>
+        </Values>
+      </DefaultValue>
+		<AllowBlank>true</AllowBlank>
+      <Prompt>Administering User</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="IncludeMeds">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>MED</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Include Meds</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>MED</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>NO</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="IncludeTreatments">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>TRE</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Include Treatments</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>TRE</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>NO</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="IncludeLabs">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>LAB</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Include Labs</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>LAB</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>NO</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="IncludeDiagnostics">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>DIA</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Include Diagnostics</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>DIA</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>NO</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="UserSys">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>UserSys</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>cbb7a333-211b-4e91-afd2-5e811b50c1d0</rd:ReportID>
+</Report>
