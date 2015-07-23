@@ -1,0 +1,78 @@
+We had implemented many reports under folder in SSRS even though they were often copies of the same report, with just the entity id different in the SQL.   There was actually no security to prevent one org from running another's reports though.
+I came in and wanted to share the reports (to normalize the code repository) and also to secure who sees what. 
+Internet Explorer will pass to the server who is logged on to the session.   As long as as the SSRS is set in the config to pick up the credentials from the browser the below will work great...
+
+For the report, the first parm is userid, is hidden, and has default value of =Replace(User!UserID, "yourdomain\", "")
+The next parm is the org list which get's it's values from the below dataset to a SP that has the above passed to it. 
+It returns a list of org id's and Description for every org a person has access to, and all the down stream orgs under them.
+That way your report can only pull data from orgs the user has rights to.
+
+
+
+
+
+USE [phReports]
+GO
+/****** Object:  StoredProcedure [dbo].[phGetOrgsForUser]    Script Date: 1/21/2015 12:20:20 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Stephen Grody>
+-- Create date: <2014-12>
+-- Description:	<Get Orgs in Vision for which user is approved>
+-- =============================================
+ALTER PROCEDURE [dbo].[phGetOrgsForUser] @userid nvarchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+	-- Insert statements for procedure here
+	DECLARE @orgsys INT;
+	DECLARE @usersys INT;
+	CREATE TABLE #OrgResultsTable(
+	OrgEntSys INT, FullOrgDesc NVARCHAR(80));
+
+	SELECT @usersys = [PersonnelUsersys]
+	  FROM [HMXaes].[dbo].[Personnel] 
+	  where NTlogon = @userid  --SUBSTRING(SYSTEM_USER,6,20); -- trimmed off domain stuff
+
+	--SELECT @orgsys = O.OrgEntSys
+	SELECT distinct O.OrgEntSys INTO #orgtable
+	FROM [HMXaes].dbo.UserOrganizations AS UO WITH (NOLOCK)
+	INNER JOIN [HMXaes].dbo.Organizations AS O WITH (NOLOCK) ON O.OrgEntSys = UO.OrgEntSys AND O.OrgSet = UO.OrgSet
+	INNER JOIN [HMXaes].dbo.Organizations AS O2 WITH (NOLOCK) ON O.OrgSet = UO.OrgSet AND O2.FullOrgDesc LIKE O.FullOrgDesc + '%'
+	WHERE (UO.OrgSet = 1)
+	AND (UO.UserSys = @usersys)
+	AND (UO.DateActive <= GETDATE())
+	AND (UO.DateInactive IS NULL)
+	
+	--select * from #orgtable;
+
+	DECLARE @MyCursor CURSOR;
+	DECLARE @MyEntOrg INT;
+	BEGIN
+		SET @MyCursor = CURSOR FOR
+		SELECT OrgEntSys from #orgtable
+
+		OPEN @MyCursor 
+		FETCH NEXT FROM @MyCursor 
+		INTO @MyEntOrg
+		WHILE @@FETCH_STATUS = 0
+		BEGIN
+			INSERT into #OrgResultsTable (OrgEntSys, FullOrgDesc) SELECT OrgEntSys, FullOrgDesc  FROM [HMXaes].[dbo].vwOrganizationsDesc WHERE OrgEntSys IN (
+			SELECT * FROM [HMXaes].[dbo].[hmxfn_OrgFilterToLevel](@MyEntOrg, 1, 0,60) WHERE LowerOrgDesc < 'A' )  order by FullOrgDesc
+			FETCH NEXT FROM @MyCursor INTO @MyEntOrg
+		END; 
+
+		CLOSE @MyCursor ;
+		DEALLOCATE @MyCursor;
+	END;
+	SELECT * FROM #OrgResultsTable;
+	Drop table #orgtable;
+	Drop table #OrgResultsTable;
+END
