@@ -213,26 +213,8 @@
 
           /*Start - Builds out Org Break - Can be reused*/
 		SELECT  DISTINCT
-		ISNULL(
 		(
-			CASE	
-				WHEN @BreakAtOrgLevelLocation = 1 THEN vwOrganizations.Ent1
-				WHEN @BreakAtOrgLevelLocation = 2 THEN vwOrganizations.Ent2
-				WHEN @BreakAtOrgLevelLocation = 3 THEN vwOrganizations.Ent3
-				WHEN @BreakAtOrgLevelLocation = 4 THEN vwOrganizations.Ent4
-				WHEN @BreakAtOrgLevelLocation = 5 THEN vwOrganizations.Ent5
-				WHEN @BreakAtOrgLevelLocation = 6 THEN vwOrganizations.Ent6
-				WHEN @BreakAtOrgLevelLocation = 7 THEN vwOrganizations.Ent7
-				WHEN @BreakAtOrgLevelLocation = 8 THEN vwOrganizations.Ent8
-				WHEN @BreakAtOrgLevelLocation = 9 THEN vwOrganizations.Ent9
-				WHEN @BreakAtOrgLevelLocation = 10 THEN vwOrganizations.Ent10
-				WHEN @BreakAtOrgLevelLocation = 11 THEN vwOrganizations.Ent11
-				WHEN @BreakAtOrgLevelLocation = 12 THEN vwOrganizations.Ent12
-				WHEN @BreakAtOrgLevelLocation = 13 THEN vwOrganizations.Ent13
-				WHEN @BreakAtOrgLevelLocation = 14 THEN vwOrganizations.Ent14
-				WHEN @BreakAtOrgLevelLocation = 15 THEN vwOrganizations.Ent15
-			END
-				),vwOrganizations.OrgEntSys) AS OrgBreak,
+		STUFF((SELECT CAST(', ' + FullOrgDesc as varchar(max)) FROM vwOrganizations where OrgEntSys IN ( @Organization ) FOR XML PATH ('')),1,2,'')) AS OrgBreak,
 				vwOrganizations.FullOrgDesc,
 			/*End - Builds out Org Break - Can be reused*/
           dbo.episodes.episodesys,
@@ -266,7 +248,8 @@
           dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
           dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
           dbo.vwEpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.vwEpsAssessDtl.EpsAssessSys
-          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level3Start and @UTCRunDate
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level3Start and @UTCRunDate 
+		  and dbo.EpsAssessments.TSInvalidFlg is null
           and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level3Count,
           (SELECT COUNT(EpisodeSys)
           FROM         dbo.EpsAssessments INNER JOIN
@@ -274,7 +257,7 @@
           dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
           dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
           dbo.vwEpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.vwEpsAssessDtl.EpsAssessSys
-          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level2Start and @UTCRunDate
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level2Start and @UTCRunDate and dbo.EpsAssessments.TSInvalidFlg is null
           and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level2Count,
           (SELECT COUNT(EpisodeSys)
           FROM         dbo.EpsAssessments INNER JOIN
@@ -282,7 +265,7 @@
           dbo.AssessTempDtl with (nolock) ON dbo.AssessTemplate.AssessmentSys = dbo.AssessTempDtl.AssessmentSys INNER JOIN
           dbo.AssessQuestion with (nolock) ON dbo.AssessTempDtl.DtlSys = dbo.AssessQuestion.QuestionSys INNER JOIN
           dbo.vwEpsAssessDtl with (nolock) ON dbo.EpsAssessments.EpsAssessSys = dbo.vwEpsAssessDtl.EpsAssessSys
-          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level1Start and @UTCRunDate
+          WHERE     (dbo.AssessQuestion.QuestionSys = 190187) AND (dbo.vwEpsAssessDtl.Value = '1') and dbo.EpsAssessments.UTCDateCaptured BETWEEN @Level1Start and @UTCRunDate and dbo.EpsAssessments.TSInvalidFlg is null
           and dbo.EpsAssessments.EpisodeSys = #HCInHouseResidents.EpisodeSys) as Level1Count
           FROM #HCInHouseResidents
 
