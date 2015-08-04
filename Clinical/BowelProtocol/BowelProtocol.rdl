@@ -11,7 +11,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>2.67in</Height>
+              <Height>2.88in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -854,7 +854,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>No BMs 14+ Shifts</Value>
+                                                <Value>No BMs 14+ Shifts ****Call doc for additional orders****</Value>
                                                 <Style>
                                                   <FontSize>14pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
@@ -1119,7 +1119,7 @@
                             </TablixMembers>
                           </TablixRowHierarchy>
                           <DataSetName>ReportDataSet</DataSetName>
-                          <Top>0.5in</Top>
+                          <Top>0.71in</Top>
                           <Height>2.17in</Height>
                           <Width>7.52084in</Width>
                           <Style />
@@ -1130,6 +1130,24 @@
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
+                                <TextRun>
+                                  <Value>Lax needed in </Value>
+                                  <Style>
+                                    <Format>MM/dd/yy</Format>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!OrgBreak.Value</Value>
+                                  <Style>
+                                    <Format>MM/dd/yy</Format>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value> as of </Value>
+                                  <Style>
+                                    <Format>MM/dd/yy</Format>
+                                  </Style>
+                                </TextRun>
                                 <TextRun>
                                   <Value>=Fields!AsOfDate.Value</Value>
                                   <Style>
@@ -1155,10 +1173,41 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>AsOfDate</rd:DefaultName>
-                          <Top>0.22056in</Top>
+                          <Top>0.44444in</Top>
                           <Height>0.21in</Height>
-                          <Width>7.52083in</Width>
+                          <Width>7.52084in</Width>
                           <ZIndex>1</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Textbox Name="textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Bowel Protocol Lax Report</Value>
+                                  <Style>
+                                    <FontSize>16pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextDecoration>Underline</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox1</rd:DefaultName>
+                          <Height>0.38889in</Height>
+                          <Width>7.52083in</Width>
+                          <ZIndex>2</ZIndex>
                           <Style>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -1207,47 +1256,92 @@
           <BreakLocation>End</BreakLocation>
         </PageBreak>
         <Top>0.21in</Top>
-        <Height>2.67in</Height>
+        <Height>2.88in</Height>
         <Width>7.52084in</Width>
         <Style />
       </Tablix>
-      <Textbox Name="textbox1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Bowel Protocol Lax Report</Value>
-                <Style>
-                  <FontSize>16pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>textbox1</rd:DefaultName>
-        <Height>0.38889in</Height>
-        <Width>7.52083in</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
-    <Height>2.88in</Height>
+    <Height>3.09in</Height>
     <Style />
   </Body>
   <Width>7.52084in</Width>
   <Page>
+    <PageFooter>
+      <Height>1in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value />
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Signature:  ______________________________________________     Title:  _____________________</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value />
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value />
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Signature:  ______________________________________________     Title:  _____________________</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>0.04167in</Top>
+          <Height>0.95833in</Height>
+          <Width>7.52083in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
     <LeftMargin>0.5in</LeftMargin>
     <RightMargin>0.25in</RightMargin>
     <TopMargin>0.5in</TopMargin>
@@ -1336,26 +1430,7 @@ SET @Level3Start = DATEADD(HH,-24,@Level2Start)
 
 /*Start - Builds out Org Break - Can be reused*/
 SELECT  DISTINCT
-ISNULL(
-		(
-			CASE	
-				WHEN @BreakAtOrgLevelLocation = 1 THEN Organizations.EntSys1
-				WHEN @BreakAtOrgLevelLocation = 2 THEN Organizations.EntSys2
-				WHEN @BreakAtOrgLevelLocation = 3 THEN Organizations.EntSys3
-				WHEN @BreakAtOrgLevelLocation = 4 THEN Organizations.EntSys4
-				WHEN @BreakAtOrgLevelLocation = 5 THEN Organizations.EntSys5
-				WHEN @BreakAtOrgLevelLocation = 6 THEN Organizations.EntSys6
-				WHEN @BreakAtOrgLevelLocation = 7 THEN Organizations.EntSys7
-				WHEN @BreakAtOrgLevelLocation = 8 THEN Organizations.EntSys8
-				WHEN @BreakAtOrgLevelLocation = 9 THEN Organizations.EntSys9
-				WHEN @BreakAtOrgLevelLocation = 10 THEN Organizations.EntSys10
-				WHEN @BreakAtOrgLevelLocation = 11 THEN Organizations.EntSys11
-				WHEN @BreakAtOrgLevelLocation = 12 THEN Organizations.EntSys12
-				WHEN @BreakAtOrgLevelLocation = 13 THEN Organizations.EntSys13
-				WHEN @BreakAtOrgLevelLocation = 14 THEN Organizations.EntSys14
-				WHEN @BreakAtOrgLevelLocation = 15 THEN Organizations.EntSys15
-			END
-				),Organizations.OrgEntSys) AS OrgBreak,
+(SELECT FullOrgDesc FROM vwOrganizations where OrgEntSys IN ( @Organization )) AS OrgBreak,
 				Organizations.FullOrgDesc,
 /*End - Builds out Org Break - Can be reused*/
 dbo.episodes.episodesys, 
@@ -1437,7 +1512,7 @@ DROP TABLE #HCInHouseResidents</CommandText>
       <Fields>
         <Field Name="OrgBreak">
           <DataField>OrgBreak</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="FullOrgDesc">
           <DataField>FullOrgDesc</DataField>
@@ -1638,6 +1713,7 @@ AND ol.LevelType = 'FA';
           <LabelField>UpperOrgDesc</LabelField>
         </DataSetReference>
       </ValidValues>
+      <MultiValue>true</MultiValue>
     </ReportParameter>
     <ReportParameter Name="BreakAtOrgLevel">
       <DataType>String</DataType>
